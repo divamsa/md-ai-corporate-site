@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="マネーデザインへのお問い合わせ｜無料相談・資料請求はこちらから。">
+  <meta property="og:title" content="お問い合わせ｜マネーデザイン">
+  <meta property="og:description" content="中小企業への生成AI導入支援サービス">
+  <meta property="og:type" content="website">
+  <title>お問い合わせ｜マネーデザイン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="logo-mark">MD</span>
+        <span class="logo-text">マネーデザイン</span>
+      </a>
+      <nav class="header__nav" id="globalNav">
+        <ul class="nav__list">
+          <li><a href="services.html">サービス</a></li>
+          <li><a href="cases.html">導入事例</a></li>
+          <li><a href="blog/index.html">ブログ</a></li>
+          <li><a href="about.html">会社情報</a></li>
+        </ul>
+      </nav>
+      <a href="contact.html" class="btn btn--primary header__cta" style="color:var(--color-accent)">無料相談</a>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ページヒーロー -->
+    <section class="page-hero section--hero">
+      <div class="container">
+        <p class="hero__eyebrow">Contact</p>
+        <h1 class="page-hero__title">お問い合わせ</h1>
+        <p class="page-hero__desc">無料相談・資料請求・その他ご質問はこちらから</p>
+      </div>
+    </section>
+
+    <!-- 無料相談フォーム -->
+    <section class="section" id="consultation">
+      <div class="container">
+        <h2 class="section__title">無料相談を予約する</h2>
+        <p class="section__desc">60分の無料相談で、貴社に最適な活用方法をご提案します</p>
+        <form class="contact-form" action="#" method="post">
+          <div class="form__group">
+            <label class="form__label" for="company">会社名 <span class="form__required">必須</span></label>
+            <input class="form__input" type="text" id="company" name="company" placeholder="株式会社〇〇" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="name">お名前 <span class="form__required">必須</span></label>
+            <input class="form__input" type="text" id="name" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">メールアドレス <span class="form__required">必須</span></label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="example@company.co.jp" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="phone">電話番号</label>
+            <input class="form__input" type="tel" id="phone" name="phone" placeholder="03-0000-0000">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="employees">従業員数</label>
+            <select class="form__select" id="employees" name="employees">
+              <option value="">選択してください</option>
+              <option value="1-10">1〜10名</option>
+              <option value="11-50">11〜50名</option>
+              <option value="51-100">51〜100名</option>
+              <option value="101-300">101〜300名</option>
+              <option value="301+">301名以上</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="message">相談内容・お悩み</label>
+            <textarea class="form__textarea" id="message" name="message" rows="5" placeholder="例：営業資料の作成に時間がかかっている、議事録作成を効率化したいなど"></textarea>
+          </div>
+          <div class="form__submit">
+            <button type="submit" class="btn btn--primary btn--lg">送信する</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 資料請求 -->
+    <section class="section section--bg-gray" id="document">
+      <div class="container">
+        <h2 class="section__title">資料請求</h2>
+        <p class="section__desc">サービス概要資料（PDF）を無料でお送りします</p>
+        <form class="contact-form" action="#" method="post">
+          <div class="form__group">
+            <label class="form__label" for="doc-company">会社名 <span class="form__required">必須</span></label>
+            <input class="form__input" type="text" id="doc-company" name="company" placeholder="株式会社〇〇" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="doc-name">お名前 <span class="form__required">必須</span></label>
+            <input class="form__input" type="text" id="doc-name" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="doc-email">メールアドレス <span class="form__required">必須</span></label>
+            <input class="form__input" type="email" id="doc-email" name="email" placeholder="example@company.co.jp" required>
+          </div>
+          <div class="form__submit">
+            <button type="submit" class="btn btn--primary btn--lg">資料を請求する</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">マネーデザイン</a>
+        <p class="footer__tagline">生成AI導入支援サービス</p>
+      </div>
+      <nav class="footer__nav">
+        <ul>
+          <li><a href="services.html">サービス</a></li>
+          <li><a href="cases.html">導入事例</a></li>
+          <li><a href="blog/index.html">ブログ</a></li>
+          <li><a href="about.html">会社情報</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 株式会社マネーデザイン. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
