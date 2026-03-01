@@ -108,7 +108,7 @@ if (statNums.length > 0) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = parseInt(entry.target.dataset.count, 10);
-        countUp(entry.target, target);
+        if (!isNaN(target)) countUp(entry.target, target);
         statsObserver.unobserve(entry.target);
       }
     });

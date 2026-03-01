@@ -1,344 +1,374 @@
 /* ==========================================
-   components.css - 共通コンポーネント
+   components.css — Zen × Tech Dark
    ========================================== */
 
-/* --- ボタン --- */
+/* --- Buttons --- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius);
-  font-family: var(--font-ja);
-  font-weight: 700;
-  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-sm);
   line-height: 1;
-  transition: background var(--transition), color var(--transition),
-              border-color var(--transition), transform var(--transition),
-              box-shadow var(--transition);
+  transition: all var(--transition);
   cursor: pointer;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
-.btn:hover { transform: translateY(-2px); }
-.btn:active { transform: translateY(0); }
 
 .btn--primary {
-  background: var(--color-accent);
-  color: white;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
 }
 .btn--primary:hover {
-  background: #2563EB;
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+  background: #3a3633;
+  border-color: #3a3633;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-sub);
+  border: 1px solid var(--border-strong);
+}
+.btn--ghost:hover {
+  color: var(--text);
+  background: rgba(240, 237, 232, 0.04);
 }
 
 .btn--outline {
   background: transparent;
-  color: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  color: var(--text-sub);
+  border: 1px solid var(--border-strong);
 }
 .btn--outline:hover {
-  background: var(--color-accent);
-  color: white;
-}
-
-.btn--white {
-  background: white;
-  color: var(--color-primary);
-  border: 2px solid white;
-}
-.btn--white:hover {
-  background: transparent;
-  color: white;
+  color: var(--text);
+  background: rgba(240, 237, 232, 0.04);
 }
 
 .btn--lg {
-  padding: 1rem 2.25rem;
-  font-size: 1rem;
+  padding: 0.875rem 2rem;
+  font-size: var(--text-base);
 }
 
-/* --- サービスカード (T-202) --- */
-.services__grid {
+/* --- Service List (numbered, no cards) --- */
+.services__list {
+  display: flex;
+  flex-direction: column;
+}
+.service-item {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  grid-template-columns: 56px 1fr auto;
+  gap: var(--sp-6);
+  padding: var(--sp-6) 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+  transition: background var(--transition);
 }
-.service-card {
-  background: white;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  transition: box-shadow var(--transition), transform var(--transition);
+.service-item:first-child {
+  border-top: 1px solid var(--border);
 }
-.service-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+.service-item__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  padding-top: 5px;
 }
-.service-card__icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--space-sm);
+.service-item__body {
+  flex: 1;
 }
-.service-card__title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-  line-height: 1.4;
+.service-item__title {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: var(--sp-2);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
-.service-card__desc {
-  font-size: 0.9rem;
-  color: var(--color-text-sub);
-  margin-bottom: var(--space-sm);
-  line-height: 1.8;
+.service-item__desc {
+  font-size: var(--text-sm);
+  color: var(--text-sub);
+  line-height: 1.75;
 }
-.service-card__link {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  transition: gap var(--transition);
+.service-item__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  padding-top: 5px;
+  transition: color var(--transition);
+  white-space: nowrap;
 }
-.service-card__link:hover { text-decoration: underline; }
+.service-item__link:hover { color: var(--accent); }
 
-/* --- 事例カード (T-204) --- */
+/* --- Case Cards (grid with gap-less borders) --- */
 .cases__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  gap: 1px;
+  background: var(--border);
 }
 .case-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  transition: box-shadow var(--transition), transform var(--transition);
+  background: var(--bg);
+  padding: var(--sp-6);
+  transition: background var(--transition);
 }
 .case-card:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
+  background: var(--bg-surface);
 }
 .case-card__industry {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  background: rgba(59, 130, 246, 0.1);
-  padding: 2px 10px;
-  border-radius: 999px;
-  margin-bottom: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-3);
 }
 .case-card__title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: var(--sp-3);
   line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 .case-card__result {
-  font-size: 0.875rem;
-  color: var(--color-text-sub);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-sub);
 }
 .case-card__result strong {
-  color: var(--color-highlight);
-  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 500;
 }
 
-/* --- ブログカード (T-402) --- */
+/* --- Blog Cards --- */
 .blog__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  gap: 1px;
+  background: var(--border);
 }
 .blog-card {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background: var(--bg);
   overflow: hidden;
-  transition: box-shadow var(--transition), transform var(--transition);
-  background: white;
+  transition: background var(--transition);
 }
 .blog-card:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
+  background: var(--bg-surface);
 }
 .blog-card__thumb {
   width: 100%;
   aspect-ratio: 16/9;
-  background: var(--color-bg-gray);
+  background: var(--bg-surface);
   object-fit: cover;
 }
 .blog-card__body {
-  padding: var(--space-sm);
+  padding: var(--sp-4);
 }
 .blog-card__category {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  margin-bottom: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
 }
 .blog-card__title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text);
   line-height: 1.5;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--sp-2);
+  letter-spacing: -0.01em;
 }
 .blog-card__excerpt {
-  font-size: 0.875rem;
-  color: var(--color-text-sub);
+  font-size: var(--text-sm);
+  color: var(--text-sub);
   line-height: 1.65;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--sp-2);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .blog-card__date {
-  font-size: 0.8rem;
-  color: var(--color-text-sub);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
 }
 
-/* --- ローディング --- */
+/* --- Loading --- */
 .loading {
   text-align: center;
-  color: var(--color-text-sub);
-  padding: var(--space-lg);
-  font-size: 0.9rem;
+  color: var(--text-sub);
+  padding: var(--sp-8);
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
 }
 
-/* --- お客様の声 (T-205) --- */
+/* --- Voice Cards (horizontal list, no stars) --- */
 .voices__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  display: flex;
+  flex-direction: column;
 }
 .voice-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  transition: box-shadow var(--transition), transform var(--transition);
+  padding: var(--sp-6) 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: var(--sp-8);
+  align-items: start;
 }
-.voice-card:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
-}
-.voice-card__stars {
-  color: #F59E0B;
-  font-size: 1rem;
-  letter-spacing: 2px;
+.voice-card:first-child {
+  border-top: 1px solid var(--border);
 }
 .voice-card__text {
-  font-size: 0.925rem;
-  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: var(--text-sub);
   line-height: 1.85;
-  flex: 1;
+  font-weight: 300;
+  position: relative;
+  padding-left: var(--sp-4);
+}
+.voice-card__text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0.5;
 }
 .voice-card__footer {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: var(--space-xs);
-  border-top: 1px solid var(--color-border);
+  padding-top: 4px;
 }
 .voice-card__name {
-  font-weight: 700;
-  font-size: 0.875rem;
-  color: var(--color-primary);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
 }
 .voice-card__company {
-  font-size: 0.8rem;
-  color: var(--color-text-sub);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
-/* --- ページヒーロー（サブページ共通） --- */
+/* --- Page Hero (subpages) --- */
 .page-hero {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1a3a6e 60%, #0a1628 100%);
-  color: white;
-  padding: var(--space-lg) 0 var(--space-xl);
-  min-height: 260px;
-  display: flex;
-  align-items: flex-end;
+  padding: var(--sp-8) 0;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--sp-3);
 }
 .page-hero__title {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: var(--space-xs);
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  font-family: var(--font-sans);
 }
 .page-hero__desc {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.75);
-  margin-top: var(--space-xs);
+  font-size: var(--text-base);
+  color: var(--text-sub);
+  margin-top: var(--sp-3);
 }
 
-/* --- サービス詳細 (T-301) --- */
+/* --- Service Detail (services.html) --- */
 .service-detail {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: var(--space-md);
+  grid-template-columns: 64px 1fr;
+  gap: var(--sp-6);
   align-items: start;
   max-width: 800px;
   margin: 0 auto;
+  padding: var(--sp-6) 0;
+  border-bottom: 1px solid var(--border);
 }
-.service-detail__icon { font-size: 3rem; line-height: 1; }
+.service-detail:first-of-type {
+  border-top: 1px solid var(--border);
+}
+.service-detail__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  padding-top: 5px;
+}
 .service-detail__title {
   font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--space-sm);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: var(--sp-3);
+  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
 }
 .service-detail__desc {
-  color: var(--color-text-sub);
+  color: var(--text-sub);
   line-height: 1.85;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--sp-3);
+  font-size: var(--text-base);
 }
 .service-detail__list {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--sp-1);
+}
+.service-detail__list li {
+  font-size: var(--text-sm);
+  color: var(--text-sub);
+  padding-left: var(--sp-3);
+  position: relative;
 }
 .service-detail__list li::before {
-  content: "✓ ";
-  color: var(--color-highlight);
-  font-weight: 700;
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
 }
-/* アイコン右配置バリアント (T-301) */
-.service-detail--reverse {
-  grid-template-columns: 1fr 80px;
-}
-.service-detail--reverse .service-detail__icon {
-  grid-column: 2;
-  grid-row: 1;
-}
-.service-detail--reverse .service-detail__body {
-  grid-column: 1;
-  grid-row: 1;
-}
+/* Legacy icon support (replaced by num) */
+.service-detail__icon { display: none; }
 
-/* --- 会社情報 (T-303) --- */
+/* --- About --- */
 .about__mission {
   font-size: clamp(1.2rem, 3vw, 1.6rem);
-  font-weight: 700;
-  color: var(--color-primary);
-  text-align: center;
-  padding: var(--space-lg) 0;
-  border-left: 4px solid var(--color-accent);
-  padding-left: var(--space-md);
-  background: var(--color-bg-gray);
-  border-radius: var(--radius);
-  margin-bottom: var(--space-md);
+  font-weight: 400;
+  color: var(--text);
+  padding: var(--sp-8) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-8);
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  font-family: var(--font-sans);
 }
 .about__body {
   max-width: 720px;
   margin: 0 auto;
   line-height: 1.95;
-  color: var(--color-text-sub);
+  color: var(--text-sub);
 }
 .about__table {
   width: 100%;
@@ -348,142 +378,151 @@
 }
 .about__table th,
 .about__table td {
-  padding: 1rem var(--space-sm);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--sp-3) var(--sp-2);
+  border-bottom: 1px solid var(--border);
   text-align: left;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
 }
 .about__table th {
   width: 30%;
-  color: var(--color-text-sub);
-  font-weight: 500;
+  color: var(--text-muted);
+  font-weight: 400;
   white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+}
+.about__table td {
+  color: var(--text-sub);
 }
 .about__message {
   max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--sp-3);
   line-height: 1.95;
-  color: var(--color-text-sub);
+  color: var(--text-sub);
 }
 .about__message-sign {
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-top: var(--space-xs);
+  font-weight: 500;
+  color: var(--text);
+  margin-top: var(--sp-2);
+  font-size: var(--text-sm);
 }
 
-/* --- お問い合わせフォーム (T-304) --- */
+/* --- Contact Form --- */
 .contact-form {
-  max-width: 680px;
+  max-width: 640px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--sp-4);
 }
 .form__group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 .form__label {
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--text-sub);
+  letter-spacing: 0.08em;
 }
 .form__required {
-  font-size: 0.75rem;
-  color: white;
-  background: #EF4444;
-  padding: 1px 6px;
-  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
   margin-left: 6px;
-  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 .form__input,
 .form__select,
 .form__textarea {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
   font-family: var(--font-ja);
-  font-size: 0.95rem;
-  color: var(--color-text);
-  background: white;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  font-size: var(--text-sm);
+  color: var(--text);
+  transition: border-color var(--transition);
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.form__input::placeholder,
+.form__textarea::placeholder {
+  color: var(--text-muted);
 }
 .form__input:focus,
 .form__select:focus,
 .form__textarea:focus {
-  outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+  border-color: var(--accent);
 }
 .form__textarea { resize: vertical; min-height: 140px; }
-.form__submit { text-align: center; padding-top: var(--space-xs); }
+.form__submit { padding-top: var(--sp-2); }
 
-/* --- case-card フル（cases.html用） --- */
-.case-card--full { padding: var(--space-md); }
+/* --- Case Card Full --- */
+.case-card--full { padding: var(--sp-6); }
 .case-card__body {
-  font-size: 0.9rem;
-  color: var(--color-text-sub);
+  font-size: var(--text-sm);
+  color: var(--text-sub);
   line-height: 1.85;
-  margin: var(--space-xs) 0;
+  margin: var(--sp-2) 0;
 }
 
-/* --- レスポンシブ --- */
+/* --- Form Result --- */
+.form__result {
+  margin-top: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--text-sm);
+  text-align: center;
+  display: none;
+  line-height: 1.6;
+  border: 1px solid var(--border);
+}
+.form__result.success {
+  display: block;
+  color: #6ee7b7;
+  border-color: rgba(110, 231, 183, 0.2);
+}
+.form__result.error {
+  display: block;
+  color: #fca5a5;
+  border-color: rgba(252, 165, 165, 0.2);
+}
+
+/* --- Responsive --- */
 @media (max-width: 1024px) {
-  .services__grid,
   .cases__grid,
-  .blog__grid,
-  .voices__grid {
+  .blog__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .services__grid,
+  .service-item {
+    grid-template-columns: 40px 1fr;
+  }
+  .service-item__link {
+    grid-column: 2;
+    padding-top: var(--sp-1);
+  }
   .cases__grid,
-  .blog__grid,
-  .voices__grid {
+  .blog__grid {
     grid-template-columns: 1fr;
+  }
+  .voice-card {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
   }
 }
 
 @media (max-width: 600px) {
   .service-detail { grid-template-columns: 1fr; }
-  .service-detail--reverse { grid-template-columns: 1fr; }
-  .service-detail--reverse .service-detail__icon { grid-column: 1; grid-row: auto; }
-  .service-detail--reverse .service-detail__body  { grid-column: 1; grid-row: auto; }
-  .service-detail__icon { font-size: 2rem; }
-  .about__table th { white-space: normal; width: 40%; }
   .hero__actions,
-  .cta__actions {
-    flex-direction: column;
-  }
+  .cta__actions { flex-direction: column; }
   .btn--lg { width: 100%; justify-content: center; }
-}
-
-/* --- フォーム送信結果 (T-501) --- */
-.form__result {
-  margin-top: var(--space-sm);
-  padding: 1rem 1.25rem;
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  text-align: center;
-  display: none;
-  line-height: 1.6;
-}
-.form__result.success {
-  display: block;
-  background: #ecfdf5;
-  color: #065f46;
-  border: 1px solid #6ee7b7;
-}
-.form__result.error {
-  display: block;
-  background: #fef2f2;
-  color: #991b1b;
-  border: 1px solid #fca5a5;
 }
