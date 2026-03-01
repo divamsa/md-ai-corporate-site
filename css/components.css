@@ -445,3 +445,26 @@
   }
   .btn--lg { width: 100%; justify-content: center; }
 }
+
+/* --- フォーム送信結果 (T-501) --- */
+.form__result {
+  margin-top: var(--space-sm);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  text-align: center;
+  display: none;
+  line-height: 1.6;
+}
+.form__result.success {
+  display: block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+.form__result.error {
+  display: block;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}

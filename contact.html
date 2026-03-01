@@ -54,7 +54,10 @@
       <div class="container">
         <h2 class="section__title">無料相談を予約する</h2>
         <p class="section__desc">60分の無料相談で、貴社に最適な活用方法をご提案します</p>
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form js-form" id="consultationForm"
+              action="https://formspree.io/scb.tokyo@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="【無料相談】マネーデザインへのお問い合わせ">
+          <input type="hidden" name="_language" value="ja">
           <div class="form__group">
             <label class="form__label" for="company">会社名 <span class="form__required">必須</span></label>
             <input class="form__input" type="text" id="company" name="company" placeholder="株式会社〇〇" required>
@@ -87,8 +90,10 @@
             <textarea class="form__textarea" id="message" name="message" rows="5" placeholder="例：営業資料の作成に時間がかかっている、議事録作成を効率化したいなど"></textarea>
           </div>
           <div class="form__submit">
-            <button type="submit" class="btn btn--primary btn--lg">送信する</button>
+            <button type="submit" class="btn btn--primary btn--lg js-submit-btn">送信する</button>
           </div>
+          <!-- 送信結果メッセージ -->
+          <div class="form__result" id="consultationResult" aria-live="polite"></div>
         </form>
       </div>
     </section>
@@ -98,7 +103,10 @@
       <div class="container">
         <h2 class="section__title">資料請求</h2>
         <p class="section__desc">サービス概要資料（PDF）を無料でお送りします</p>
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form js-form" id="documentForm"
+              action="https://formspree.io/scb.tokyo@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="【資料請求】マネーデザインへのお問い合わせ">
+          <input type="hidden" name="_language" value="ja">
           <div class="form__group">
             <label class="form__label" for="doc-company">会社名 <span class="form__required">必須</span></label>
             <input class="form__input" type="text" id="doc-company" name="company" placeholder="株式会社〇〇" required>
@@ -112,8 +120,10 @@
             <input class="form__input" type="email" id="doc-email" name="email" placeholder="example@company.co.jp" required>
           </div>
           <div class="form__submit">
-            <button type="submit" class="btn btn--primary btn--lg">資料を請求する</button>
+            <button type="submit" class="btn btn--primary btn--lg js-submit-btn">資料を請求する</button>
           </div>
+          <!-- 送信結果メッセージ -->
+          <div class="form__result" id="documentResult" aria-live="polite"></div>
         </form>
       </div>
     </section>
@@ -162,5 +172,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>
