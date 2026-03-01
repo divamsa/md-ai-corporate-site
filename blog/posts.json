@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "id": "sample-001",
+      "id": "316fb3c0-144b-812e-b37d-ff9d0c985723",
       "slug": "chatgpt-jitsumu-5sen",
       "title": "中小企業でのChatGPT活用術5選",
       "category": "活用事例",
@@ -9,7 +9,7 @@
       "excerpt": "営業メール、議事録、SNS投稿……ChatGPTを使って月20時間以上の工数削減を実現した中小企業の具体的な活用例を5つご紹介します。"
     },
     {
-      "id": "sample-002",
+      "id": "316fb3c0-144b-8156-8e1d-c7ffaf2b7712",
       "slug": "ai-tools-comparison-2025",
       "title": "生成AIツール比較：ChatGPT vs Claude vs Gemini",
       "category": "AI基礎",
@@ -17,7 +17,7 @@
       "excerpt": "主要3ツールの特徴・料金・得意分野を徹底比較。中小企業が最初に選ぶべきツールはどれか？目的別の選び方を解説します。"
     },
     {
-      "id": "sample-003",
+      "id": "316fb3c0-144b-8177-a7a6-d1c0d368b82f",
       "slug": "ai-introduction-checklist",
       "title": "失敗しないAI導入のための3つのチェックポイント",
       "category": "導入Tips",
