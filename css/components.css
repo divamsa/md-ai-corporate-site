@@ -308,6 +308,18 @@
   color: var(--color-highlight);
   font-weight: 700;
 }
+/* アイコン右配置バリアント (T-301) */
+.service-detail--reverse {
+  grid-template-columns: 1fr 80px;
+}
+.service-detail--reverse .service-detail__icon {
+  grid-column: 2;
+  grid-row: 1;
+}
+.service-detail--reverse .service-detail__body {
+  grid-column: 1;
+  grid-row: 1;
+}
 
 /* --- 会社情報 (T-303) --- */
 .about__mission {
@@ -430,15 +442,22 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .services__grid,
   .cases__grid,
   .blog__grid,
   .voices__grid {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 600px) {
   .service-detail { grid-template-columns: 1fr; }
+  .service-detail--reverse { grid-template-columns: 1fr; }
+  .service-detail--reverse .service-detail__icon { grid-column: 1; grid-row: auto; }
+  .service-detail--reverse .service-detail__body  { grid-column: 1; grid-row: auto; }
   .service-detail__icon { font-size: 2rem; }
+  .about__table th { white-space: normal; width: 40%; }
   .hero__actions,
   .cta__actions {
     flex-direction: column;
