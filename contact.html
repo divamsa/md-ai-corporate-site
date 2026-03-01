@@ -55,9 +55,10 @@
         <h2 class="section__title">無料相談を予約する</h2>
         <p class="section__desc">60分の無料相談で、貴社に最適な活用方法をご提案します</p>
         <form class="contact-form js-form" id="consultationForm"
-              action="https://formspree.io/scb.tokyo@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="【無料相談】マネーデザインへのお問い合わせ">
-          <input type="hidden" name="_language" value="ja">
+              action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="35d57c00-68e0-407e-9577-77d858cf297f">
+          <input type="hidden" name="subject" value="【無料相談】マネーデザインへのお問い合わせ">
+          <input type="hidden" name="from_name" value="マネーデザイン サイト">
           <div class="form__group">
             <label class="form__label" for="company">会社名 <span class="form__required">必須</span></label>
             <input class="form__input" type="text" id="company" name="company" placeholder="株式会社〇〇" required>
@@ -104,9 +105,10 @@
         <h2 class="section__title">資料請求</h2>
         <p class="section__desc">サービス概要資料（PDF）を無料でお送りします</p>
         <form class="contact-form js-form" id="documentForm"
-              action="https://formspree.io/scb.tokyo@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="【資料請求】マネーデザインへのお問い合わせ">
-          <input type="hidden" name="_language" value="ja">
+              action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="35d57c00-68e0-407e-9577-77d858cf297f">
+          <input type="hidden" name="subject" value="【資料請求】マネーデザインへのお問い合わせ">
+          <input type="hidden" name="from_name" value="マネーデザイン サイト">
           <div class="form__group">
             <label class="form__label" for="doc-company">会社名 <span class="form__required">必須</span></label>
             <input class="form__input" type="text" id="doc-company" name="company" placeholder="株式会社〇〇" required>
