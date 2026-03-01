@@ -196,11 +196,226 @@
   font-size: 0.9rem;
 }
 
+/* --- お客様の声 (T-205) --- */
+.voices__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.voice-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.voice-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.voice-card__stars {
+  color: #F59E0B;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+.voice-card__text {
+  font-size: 0.925rem;
+  color: var(--color-text);
+  line-height: 1.85;
+  flex: 1;
+}
+.voice-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--color-border);
+}
+.voice-card__name {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+}
+.voice-card__company {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+}
+
+/* --- ページヒーロー（サブページ共通） --- */
+.page-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1a3a6e 60%, #0a1628 100%);
+  color: white;
+  padding: var(--space-lg) 0 var(--space-xl);
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+}
+.page-hero__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.02em;
+}
+.page-hero__desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: var(--space-xs);
+}
+
+/* --- サービス詳細 (T-301) --- */
+.service-detail {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.service-detail__icon { font-size: 3rem; line-height: 1; }
+.service-detail__title {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+.service-detail__desc {
+  color: var(--color-text-sub);
+  line-height: 1.85;
+  margin-bottom: var(--space-sm);
+}
+.service-detail__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.service-detail__list li::before {
+  content: "✓ ";
+  color: var(--color-highlight);
+  font-weight: 700;
+}
+
+/* --- 会社情報 (T-303) --- */
+.about__mission {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+  padding: var(--space-lg) 0;
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-md);
+  background: var(--color-bg-gray);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-md);
+}
+.about__body {
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.95;
+  color: var(--color-text-sub);
+}
+.about__table {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+.about__table th,
+.about__table td {
+  padding: 1rem var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  font-size: 0.95rem;
+}
+.about__table th {
+  width: 30%;
+  color: var(--color-text-sub);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.about__message {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  line-height: 1.95;
+  color: var(--color-text-sub);
+}
+.about__message-sign {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: var(--space-xs);
+}
+
+/* --- お問い合わせフォーム (T-304) --- */
+.contact-form {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+.form__required {
+  font-size: 0.75rem;
+  color: white;
+  background: #EF4444;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  font-weight: 700;
+}
+.form__input,
+.form__select,
+.form__textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font-ja);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+.form__textarea { resize: vertical; min-height: 140px; }
+.form__submit { text-align: center; padding-top: var(--space-xs); }
+
+/* --- case-card フル（cases.html用） --- */
+.case-card--full { padding: var(--space-md); }
+.case-card__body {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  line-height: 1.85;
+  margin: var(--space-xs) 0;
+}
+
 /* --- レスポンシブ --- */
 @media (max-width: 1024px) {
   .services__grid,
   .cases__grid,
-  .blog__grid {
+  .blog__grid,
+  .voices__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -208,9 +423,12 @@
 @media (max-width: 600px) {
   .services__grid,
   .cases__grid,
-  .blog__grid {
+  .blog__grid,
+  .voices__grid {
     grid-template-columns: 1fr;
   }
+  .service-detail { grid-template-columns: 1fr; }
+  .service-detail__icon { font-size: 2rem; }
   .hero__actions,
   .cta__actions {
     flex-direction: column;
