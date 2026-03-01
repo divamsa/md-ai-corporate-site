@@ -93,19 +93,19 @@ function _placeholderPosts(limit) {
     {
       slug: '#', category: '活用事例',
       title: '中小企業でのChatGPT活用術5選',
-      date: '2025-02-01',
+      date: '2026-02-01',
       excerpt: 'ChatGPTを使って業務効率化を実現した中小企業の具体的な事例を5つご紹介します。',
     },
     {
       slug: '#', category: 'AI基礎',
       title: '生成AIツール比較：ChatGPT vs Claude vs Gemini',
-      date: '2025-01-20',
+      date: '2026-01-20',
       excerpt: '主要3ツールの特徴・料金・使い分けを徹底比較します。',
     },
     {
       slug: '#', category: '導入Tips',
       title: '失敗しないAI導入のための3つのチェックポイント',
-      date: '2025-01-10',
+      date: '2026-01-10',
       excerpt: 'AI導入を成功させるための重要なポイントを解説します。',
     },
   ].slice(0, limit);
