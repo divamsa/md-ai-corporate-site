@@ -20,19 +20,52 @@ const hamburger = document.getElementById('hamburger');
 const globalNav = document.getElementById('globalNav');
 
 if (hamburger && globalNav) {
+
+  // モバイルメニュー内にCTAボタンを動的追加
+  const headerCta = document.querySelector('.header__cta');
+  if (headerCta && !globalNav.querySelector('.nav__cta')) {
+    const mobileCta = document.createElement('div');
+    mobileCta.className = 'nav__cta';
+    mobileCta.innerHTML = `<a href="${headerCta.href}" class="btn btn--primary" style="width:100%;justify-content:center;">${headerCta.textContent}</a>`;
+    globalNav.appendChild(mobileCta);
+  }
+
+  // オーバーレイ生成
+  const overlay = document.createElement('div');
+  overlay.className = 'nav-overlay';
+  document.body.appendChild(overlay);
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    globalNav.classList.add('open');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';  // スクロールロック
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    globalNav.classList.remove('open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';  // スクロールロック解除
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    globalNav.classList.toggle('open');
-    const isOpen = hamburger.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.classList.contains('active') ? closeMenu() : openMenu();
+  });
+
+  // オーバーレイクリックで閉じる
+  overlay.addEventListener('click', closeMenu);
+
+  // Escキーで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
   });
 
   // ナビリンクをクリックしたらメニューを閉じる
   globalNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      globalNav.classList.remove('open');
-    });
+    link.addEventListener('click', closeMenu);
   });
 }
 
