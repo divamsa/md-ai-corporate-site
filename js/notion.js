@@ -1,105 +1,118 @@
 /* ==========================================
-   notion.js - Notion API連携 (T-401〜T-403)
-   現時点: プレースホルダー
-   実装予定: T-401 でAPIキー設定後に完成
+   notion.js — ブログ記事描画 (T-401〜T-404)
+
+   【仕組み】
+   Notion API は CORS制限のためブラウザから直接呼べないため、
+   scripts/fetch-blog.js（Node.js）でビルド時に取得した
+   blog/posts.json を fetch して描画する。
+
+   【記事更新手順】
+   1. Notionで記事を書いて「公開」をチェック
+   2. node scripts/fetch-blog.js  → blog/posts.json が更新される
+   3. git add blog/posts.json && git commit -m "ブログ更新" && git push
    ========================================== */
 
 'use strict';
 
-// ⚠️ T-401 実装時に設定
-const NOTION_TOKEN   = 'YOUR_NOTION_INTEGRATION_TOKEN'; // 要設定
-const NOTION_DB_ID   = 'YOUR_NOTION_DATABASE_ID';       // 要設定
-const NOTION_API_URL = 'https://api.notion.com/v1';
+// ─── posts.json のパスを現在のページ位置から自動判定 ───
+// index.html（ルート）→ blog/posts.json
+// blog/index.html    → posts.json
+const _onBlogPage = location.pathname.includes('/blog/');
+const POSTS_JSON  = _onBlogPage ? 'posts.json' : 'blog/posts.json';
 
 /**
- * ブログ記事一覧を取得してDOMに描画
- * @param {string} containerId - 描画先要素のID
- * @param {number} limit        - 表示件数
+ * ブログ記事をDOMに描画する
+ * @param {string} containerId - 描画先要素のID（デフォルト: 'blogGrid'）
+ * @param {number} limit        - 表示件数（0 = 全件）
  */
 async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // T-401 実装前はプレースホルダー記事を表示
-  if (NOTION_TOKEN === 'YOUR_NOTION_INTEGRATION_TOKEN') {
-    container.innerHTML = renderPlaceholderPosts(limit);
-    return;
-  }
+  container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
 
   try {
-    container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
+    const res = await fetch(POSTS_JSON);
+    if (!res.ok) throw new Error(`posts.json の取得に失敗しました (${res.status})`);
 
-    const res = await fetch(`${NOTION_API_URL}/databases/${NOTION_DB_ID}/query`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        filter: { property: '公開', checkbox: { equals: true } },
-        sorts: [{ property: '公開日', direction: 'descending' }],
-        page_size: limit,
-      }),
+    const { posts } = await res.json();
+    const items = (limit > 0) ? posts.slice(0, limit) : posts;
+
+    if (!items.length) {
+      container.innerHTML = '<p class="loading">記事がありません</p>';
+      return;
+    }
+
+    container.innerHTML = items.map(postToCard).join('');
+
+    // IntersectionObserver で fade-in を再トリガー
+    container.querySelectorAll('.fade-in').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
     });
 
-    if (!res.ok) throw new Error(`Notion API error: ${res.status}`);
-    const data = await res.json();
-    container.innerHTML = data.results.map(pageToCard).join('') || '<p class="loading">記事がありません</p>';
-
   } catch (err) {
-    console.error('Notion fetch error:', err);
-    container.innerHTML = renderPlaceholderPosts(limit);
+    console.warn('Blog fetch:', err.message);
+    // フォールバック: サンプル記事を表示
+    container.innerHTML = _placeholderPosts(limit || 3).map(postToCard).join('');
   }
 }
 
 /**
- * Notion ページオブジェクト → カードHTML
+ * 記事オブジェクト → カードHTML
  */
-function pageToCard(page) {
-  const props = page.properties;
-  const title    = props['タイトル']?.title?.[0]?.plain_text ?? '（タイトルなし）';
-  const category = props['カテゴリ']?.select?.name ?? '';
-  const date     = props['公開日']?.date?.start ?? '';
-  const slug     = page.id;
+function postToCard(p) {
+  const href = _onBlogPage
+    ? `post.html?id=${encodeURIComponent(p.slug)}`
+    : `blog/post.html?id=${encodeURIComponent(p.slug)}`;
 
-  const formattedDate = date ? new Date(date).toLocaleDateString('ja-JP') : '';
+  const formattedDate = p.date
+    ? new Date(p.date).toLocaleDateString('ja-JP')
+    : '';
 
   return `
     <article class="blog-card fade-in">
       <div class="blog-card__body">
-        ${category ? `<span class="blog-card__category">${category}</span>` : ''}
+        ${p.category ? `<span class="blog-card__category">${p.category}</span>` : ''}
         <h3 class="blog-card__title">
-          <a href="blog/post.html?id=${slug}">${title}</a>
+          <a href="${href}">${p.title}</a>
         </h3>
-        <time class="blog-card__date" datetime="${date}">${formattedDate}</time>
+        ${p.excerpt ? `<p class="blog-card__excerpt">${p.excerpt}</p>` : ''}
+        <time class="blog-card__date" datetime="${p.date}">${formattedDate}</time>
       </div>
     </article>
-  `;
+  `.trim();
 }
 
 /**
- * APIキー未設定時のプレースホルダー
+ * posts.json 未生成時のフォールバックデータ
  */
-function renderPlaceholderPosts(limit) {
-  const samples = [
-    { category: '活用事例', title: '中小企業でのChatGPT活用術5選', date: '2025-02-01' },
-    { category: 'AI基礎', title: '生成AIツール比較：ChatGPT vs Claude vs Gemini', date: '2025-01-20' },
-    { category: '導入Tips', title: '失敗しないAI導入のための3つのチェックポイント', date: '2025-01-10' },
-  ];
-
-  return samples.slice(0, limit).map(p => `
-    <article class="blog-card fade-in">
-      <div class="blog-card__body">
-        <span class="blog-card__category">${p.category}</span>
-        <h3 class="blog-card__title">${p.title}</h3>
-        <time class="blog-card__date">${new Date(p.date).toLocaleDateString('ja-JP')}</time>
-      </div>
-    </article>
-  `).join('');
+function _placeholderPosts(limit) {
+  return [
+    {
+      slug: '#', category: '活用事例',
+      title: '中小企業でのChatGPT活用術5選',
+      date: '2025-02-01',
+      excerpt: 'ChatGPTを使って業務効率化を実現した中小企業の具体的な事例を5つご紹介します。',
+    },
+    {
+      slug: '#', category: 'AI基礎',
+      title: '生成AIツール比較：ChatGPT vs Claude vs Gemini',
+      date: '2025-01-20',
+      excerpt: '主要3ツールの特徴・料金・使い分けを徹底比較します。',
+    },
+    {
+      slug: '#', category: '導入Tips',
+      title: '失敗しないAI導入のための3つのチェックポイント',
+      date: '2025-01-10',
+      excerpt: 'AI導入を成功させるための重要なポイントを解説します。',
+    },
+  ].slice(0, limit);
 }
 
-/* 実行 */
+/* ─── エントリーポイント ─── */
 document.addEventListener('DOMContentLoaded', () => {
-  renderBlogPosts('blogGrid', 3);
+  // ブログ一覧ページ → 全件、トップページ → 3件
+  renderBlogPosts('blogGrid', _onBlogPage ? 0 : 3);
 });
