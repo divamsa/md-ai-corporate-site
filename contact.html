@@ -20,11 +20,13 @@
   <title>お問い合わせ｜マネーデザイン</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
+
+  <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- ヘッダー -->
   <header class="header" id="header">
@@ -40,8 +42,11 @@
           <li><a href="blog/index.html">ブログ</a></li>
           <li><a href="about.html">会社情報</a></li>
         </ul>
+        <div class="nav__cta">
+          <a href="contact.html" class="btn btn--primary">無料相談</a>
+        </div>
       </nav>
-      <a href="contact.html" class="btn btn--primary header__cta" style="color:var(--color-accent)">無料相談</a>
+      <a href="contact.html" class="btn btn--primary header__cta">無料相談</a>
       <button class="hamburger" id="hamburger" aria-label="メニュー">
         <span></span><span></span><span></span>
       </button>
@@ -51,7 +56,7 @@
   <main>
 
     <!-- ページヒーロー -->
-    <section class="page-hero section--hero">
+    <section class="page-hero">
       <div class="container">
         <p class="hero__eyebrow">Contact</p>
         <h1 class="page-hero__title">お問い合わせ</h1>
@@ -110,7 +115,7 @@
     </section>
 
     <!-- 資料請求 -->
-    <section class="section section--bg-gray" id="document">
+    <section class="section section--alt" id="document">
       <div class="container">
         <h2 class="section__title">資料請求</h2>
         <p class="section__desc">サービス概要資料（PDF）を無料でお送りします</p>
