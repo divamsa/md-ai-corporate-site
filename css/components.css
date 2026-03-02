@@ -1143,8 +1143,37 @@
    ========================================== */
 
 .about__message-block {
-  max-width: 760px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+.about__message-inner {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--sp-16);
+  align-items: start;
+}
+.about__message-text {
+  min-width: 0;
+}
+.about__message-photo {
+  position: sticky;
+  top: calc(64px + var(--sp-8));
+}
+.about__photo-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.15);
+}
+.about__photo-caption {
+  margin-top: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--text-light);
+  text-align: center;
 }
 
 .about__message-label {
@@ -1275,6 +1304,9 @@
   .reasons__grid      { grid-template-columns: repeat(2, 1fr); }
   .case-detail__body  { grid-template-columns: 1fr; gap: var(--sp-5); }
   .approach__grid     { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .about__message-inner { grid-template-columns: 1fr; }
+  .about__message-photo { position: static; margin-bottom: var(--sp-8); order: -1; }
+  .about__photo-img { aspect-ratio: 16 / 7; max-height: 300px; }
 }
 
 @media (max-width: 600px) {
