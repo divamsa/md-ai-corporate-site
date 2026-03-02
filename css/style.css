@@ -123,6 +123,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section__more {
   margin-top: var(--sp-8);
 }
+.section__header--row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.section__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color var(--transition);
+  padding-bottom: 2px;
+}
+.section__link:hover { color: var(--accent); }
 
 /* --- Header --- */
 .header {
@@ -265,11 +282,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-wrap: wrap;
   align-items: center;
 }
+.hero__foot {
+  margin-top: var(--sp-8);
+  display: flex;
+  gap: var(--sp-8);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.hero__foot .hero__desc    { margin-bottom: 0; flex: 1; min-width: 240px; }
+.hero__foot .hero__actions { flex-shrink: 0; }
+.hero__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+}
+.hero__kicker-label { color: var(--accent); text-transform: uppercase; }
+.hero__kicker-loc   { color: var(--text-muted); }
 
-/* --- Stats --- */
+/* --- Stats — 反転ダークバンド --- */
 .section--stats {
   padding: var(--sp-8) 0;
-  border-bottom: 1px solid var(--border);
+  background: var(--text);
 }
 .stats__list {
   display: flex;
@@ -277,7 +314,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .stats__item {
   flex: 1;
   padding: var(--sp-4) var(--sp-6);
-  border-right: 1px solid var(--border);
+  border-right: 1px solid rgba(249, 246, 241, 0.1);
 }
 .stats__item:first-child { padding-left: 0; }
 .stats__item:last-child  { border-right: none; }
@@ -285,7 +322,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-mono);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 500;
-  color: var(--text);
+  color: var(--bg);
   line-height: 1;
   display: flex;
   align-items: baseline;
@@ -295,13 +332,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-mono);
   font-size: 1rem;
   font-weight: 400;
-  color: var(--accent);
+  color: rgba(156, 122, 78, 0.85);
 }
 .stats__label {
   display: block;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--text-muted);
+  color: rgba(249, 246, 241, 0.38);
   margin-top: var(--sp-1);
   letter-spacing: 0.08em;
 }
@@ -323,6 +360,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .statement__text strong {
   color: var(--text);
   font-weight: 400;
+}
+.statement__sub {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-top: var(--sp-6);
+  max-width: 520px;
+  line-height: 1.9;
 }
 
 /* --- CTA Section --- */
@@ -464,6 +508,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     padding: var(--sp-3);
   }
   .stats__item:first-child { padding-left: var(--sp-3); }
+  .section--stats .stats__item { border-bottom-color: rgba(249, 246, 241, 0.1); }
+  .hero__foot { flex-direction: column; align-items: flex-start; gap: var(--sp-4); }
 
   .cta__inner   { flex-direction: column; align-items: flex-start; }
   .cta__actions { flex-direction: row; flex-wrap: wrap; }

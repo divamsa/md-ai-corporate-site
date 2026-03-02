@@ -29,6 +29,11 @@ async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  // コンテナのクラスでレンダリングモードを決定
+  // .blog__list → 横1列リスト（トップページ用）
+  // .blog__grid → カードグリッド（ブログ一覧ページ用）
+  const isListMode = container.classList.contains('blog__list');
+
   container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
 
   try {
@@ -43,7 +48,7 @@ async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
       return;
     }
 
-    container.innerHTML = items.map(postToCard).join('');
+    container.innerHTML = items.map(p => postToItem(p, isListMode)).join('');
 
     // IntersectionObserver で fade-in を再トリガー
     container.querySelectorAll('.fade-in').forEach(el => {
@@ -55,24 +60,36 @@ async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
   } catch (err) {
     console.warn('Blog fetch:', err.message);
     // フォールバック: サンプル記事を表示
-    container.innerHTML = _placeholderPosts(limit || 3).map(postToCard).join('');
+    container.innerHTML = _placeholderPosts(limit || 3).map(p => postToItem(p, isListMode)).join('');
   }
 }
 
 /**
- * 記事オブジェクト → カードHTML
+ * 記事オブジェクト → HTML（モードによりカード or リスト行）
  */
-function postToCard(p) {
+function postToItem(p, isListMode) {
   const href = _onBlogPage
     ? `post.html?id=${encodeURIComponent(p.slug)}`
     : `blog/post.html?id=${encodeURIComponent(p.slug)}`;
 
   const formattedDate = p.date
-    ? new Date(p.date).toLocaleDateString('ja-JP')
+    ? new Date(p.date).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
     : '';
 
+  if (isListMode) {
+    // ─── リスト行（トップページ用: editorial row） ───
+    return `
+      <a class="blog-list-item fade-in" href="${href}">
+        <span class="blog-list-item__category">${p.category || '—'}</span>
+        <span class="blog-list-item__title">${p.title}</span>
+        <time class="blog-list-item__date" datetime="${p.date}">${formattedDate}</time>
+      </a>
+    `.trim();
+  }
+
+  // ─── カード（ブログ一覧ページ用） ───
   return `
-    <article class="blog-card fade-in">
+    <article class="blog-card fade-in" data-category="${p.category || ''}">
       <div class="blog-card__body">
         ${p.category ? `<span class="blog-card__category">${p.category}</span>` : ''}
         <h3 class="blog-card__title">
@@ -84,6 +101,9 @@ function postToCard(p) {
     </article>
   `.trim();
 }
+
+// 後方互換エイリアス
+const postToCard = (p) => postToItem(p, false);
 
 /**
  * posts.json 未生成時のフォールバックデータ
