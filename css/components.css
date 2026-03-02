@@ -351,6 +351,81 @@
 /* Legacy icon support (replaced by num) */
 .service-detail__icon { display: none; }
 
+/* --- Service Block (services.html 専用) --- */
+.svc-section {
+  padding: var(--sp-16) 0;
+  border-top: 1px solid var(--border);
+}
+.svc-section--alt {
+  background: var(--bg-surface);
+}
+.svc-block {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--sp-8);
+  max-width: 960px;
+}
+.svc-block__num {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  padding-top: 6px;
+}
+.svc-block__title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: var(--sp-6);
+}
+.svc-block__desc {
+  font-size: var(--text-lg);
+  color: var(--text-sub);
+  line-height: 1.85;
+  margin-bottom: var(--sp-6);
+  max-width: 580px;
+}
+.svc-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.svc-block__list li {
+  font-size: var(--text-base);
+  color: var(--text-sub);
+  padding-left: var(--sp-4);
+  position: relative;
+  line-height: 1.7;
+}
+.svc-block__list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.svc-block__cta {
+  margin-top: var(--sp-8);
+}
+
+@media (max-width: 768px) {
+  .svc-block {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+  .svc-block__num {
+    font-size: 2.5rem;
+  }
+  .svc-section {
+    padding: var(--sp-8) 0;
+  }
+}
+
 /* --- About --- */
 .about__mission {
   font-size: clamp(1.2rem, 3vw, 1.6rem);
