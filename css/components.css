@@ -824,3 +824,465 @@
   .blog-list-item__title    { grid-column: 1; }
   .blog-list-item__date     { grid-column: 2; align-self: center; }
 }
+
+/* ==========================================
+   SERVICES — よくある課題 (challenges)
+   ========================================== */
+
+.challenges__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+}
+
+.challenge__item {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--sp-5);
+}
+
+.challenge__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  letter-spacing: .05em;
+  margin-bottom: var(--sp-3);
+  display: block;
+}
+
+.challenge__title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  margin-bottom: var(--sp-2);
+  line-height: 1.5;
+}
+
+.challenge__text {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.challenges__note {
+  text-align: center;
+  margin-top: var(--sp-8);
+  font-size: var(--text-base);
+  color: var(--text-light);
+}
+
+.challenges__note strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ==========================================
+   SERVICES — 支援の流れ (process)
+   ========================================== */
+
+.process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: var(--sp-8);
+  position: relative;
+}
+
+.process__steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(12.5% + var(--sp-4));
+  right: calc(12.5% + var(--sp-4));
+  height: 1px;
+  background: var(--border);
+}
+
+.process__step {
+  text-align: center;
+  padding: 0 var(--sp-4);
+  position: relative;
+}
+
+.process__step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: .04em;
+  margin: 0 auto var(--sp-4);
+  position: relative;
+  z-index: 1;
+}
+
+.process__step-title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  margin-bottom: var(--sp-2);
+}
+
+.process__step-text {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  line-height: 1.75;
+  margin: 0 0 var(--sp-2);
+}
+
+.process__step-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .04em;
+}
+
+/* ==========================================
+   SERVICES — 選ばれる理由 (reasons)
+   ========================================== */
+
+.reasons__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+  margin-top: var(--sp-8);
+}
+
+.reason__item {
+  border-top: 2px solid var(--accent);
+  padding-top: var(--sp-4);
+}
+
+.reason__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  letter-spacing: .05em;
+  display: block;
+  margin-bottom: var(--sp-3);
+}
+
+.reason__title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  margin-bottom: var(--sp-2);
+  line-height: 1.5;
+}
+
+.reason__text {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ==========================================
+   SERVICES — よくある質問 (FAQ)
+   ========================================== */
+
+.faq__list {
+  margin-top: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.faq__item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq__q {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
+  background: var(--bg);
+  font-weight: 500;
+  font-size: var(--text-base);
+  cursor: pointer;
+}
+
+.faq__q::before {
+  content: 'Q';
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.faq__a {
+  padding: 0 var(--sp-6) var(--sp-5) calc(var(--sp-6) + 1.5em);
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  line-height: 1.8;
+  background: var(--bg-alt);
+  margin: 0;
+}
+
+/* ==========================================
+   CASES — 事例詳細 (case-detail)
+   ========================================== */
+
+.case-detail {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--sp-8);
+  margin-bottom: var(--sp-8);
+  background: var(--bg);
+}
+
+.case-detail + .case-detail {
+  /* spacing handled by margin-bottom above */
+}
+
+.case-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  align-items: center;
+}
+
+.case-detail__industry {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  background: rgba(156,122,78,.1);
+  padding: 3px var(--sp-3);
+  border-radius: 4px;
+  letter-spacing: .03em;
+}
+
+.case-detail__size {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  padding: 3px var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.case-detail__result {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--bg);
+  background: var(--text);
+  padding: 3px var(--sp-3);
+  border-radius: 4px;
+  letter-spacing: .02em;
+  margin-left: auto;
+}
+
+.case-detail__title {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 var(--sp-6);
+}
+
+.case-detail__body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-6);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
+}
+
+.case-detail__col h3 {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: .06em;
+  color: var(--text-light);
+  font-weight: 400;
+  margin: 0 0 var(--sp-3);
+  text-transform: uppercase;
+}
+
+.case-detail__col p {
+  font-size: var(--text-sm);
+  color: var(--text);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.case-detail__voice {
+  margin: 0;
+  padding: var(--sp-4) var(--sp-6);
+  background: var(--bg-alt);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.case-detail__voice cite {
+  display: block;
+  margin-top: var(--sp-2);
+  font-style: normal;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  letter-spacing: .04em;
+}
+
+/* ==========================================
+   ABOUT — 代表メッセージ
+   ========================================== */
+
+.about__message-block {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.about__message-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: .1em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-5);
+}
+
+.about__message-quote {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  line-height: 1.55;
+  margin: 0 0 var(--sp-8);
+  padding: 0 0 var(--sp-6);
+  border-bottom: 1px solid var(--border);
+  font-style: normal;
+  letter-spacing: -.01em;
+}
+
+.about__message-body p {
+  font-size: var(--text-base);
+  line-height: 2;
+  color: var(--text-light);
+  margin: 0 0 var(--sp-5);
+}
+
+.about__message-body p:last-child { margin-bottom: 0; }
+
+.about__message-sign {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  letter-spacing: .06em;
+  color: var(--text);
+}
+
+/* ==========================================
+   ABOUT — 3つのアプローチ (approach)
+   ========================================== */
+
+.approach__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-10);
+}
+
+.approach__item {
+  padding: var(--sp-6);
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.approach__num {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--accent);
+  opacity: .4;
+  line-height: 1;
+  margin-bottom: var(--sp-4);
+  display: block;
+}
+
+.approach__title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  margin-bottom: var(--sp-3);
+  line-height: 1.5;
+}
+
+.approach__text {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ==========================================
+   ABOUT — ミッションバンド
+   ========================================== */
+
+.about__mission-block {
+  text-align: center;
+  padding: var(--sp-16) 0;
+}
+
+.about__mission-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: .15em;
+  color: rgba(156,122,78,.85);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--sp-5);
+}
+
+.about__mission-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: rgba(249,246,241,.95);
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  margin: 0 0 var(--sp-6);
+}
+
+.about__mission-sub {
+  font-size: var(--text-sm);
+  color: rgba(249,246,241,.5);
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ==========================================
+   RESPONSIVE — 新コンポーネント
+   ========================================== */
+
+@media (max-width: 900px) {
+  .challenges__grid   { grid-template-columns: repeat(2, 1fr); }
+  .process__steps     { grid-template-columns: repeat(2, 1fr); gap: var(--sp-8) var(--sp-4); }
+  .process__steps::before { display: none; }
+  .reasons__grid      { grid-template-columns: repeat(2, 1fr); }
+  .case-detail__body  { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .approach__grid     { grid-template-columns: 1fr; gap: var(--sp-4); }
+}
+
+@media (max-width: 600px) {
+  .challenges__grid   { grid-template-columns: 1fr; }
+  .process__steps     { grid-template-columns: 1fr; }
+  .reasons__grid      { grid-template-columns: 1fr; }
+  .case-detail        { padding: var(--sp-5); }
+  .case-detail__result { margin-left: 0; }
+  .faq__q, .faq__a   { padding-left: var(--sp-4); padding-right: var(--sp-4); }
+  .about__message-quote { font-size: 1.2rem; }
+}

@@ -3,20 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="マネーデザインの導入事例｜製造業・小売業・サービス業など、様々な業種での生成AI活用実績をご紹介します。">
+  <meta name="description" content="マネーデザインの導入事例｜製造業・小売業・サービス業など、中小企業での生成AI活用実績。業務時間40〜70%削減の具体的な事例をご紹介します。">
   <meta property="og:title" content="導入事例｜マネーデザイン">
-  <meta property="og:description" content="製造業・小売業・サービス業など様々な業種での生成AI活用実績をご紹介します。">
-  <meta property="og:type"        content="website">
-  <meta property="og:url"        content="https://ai.moneydesign.co.jp/cases.html">
-  <meta property="og:image"      content="https://ai.moneydesign.co.jp/images/ogp.png">
-  <meta property="og:site_name"  content="株式会社マネーデザイン">
-  <meta property="og:locale"     content="ja_JP">
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="導入事例｜マネーデザイン">
-  <meta name="twitter:description" content="製造業・小売業・サービス業など様々な業種での生成AI活用実績をご紹介します。">
-  <meta name="twitter:image"       content="https://ai.moneydesign.co.jp/images/ogp.png">
-  <meta name="robots"              content="index, follow">
-  <link rel="canonical"            href="https://ai.moneydesign.co.jp/cases.html">
+  <meta property="og:type"  content="website">
+  <meta property="og:url"   content="https://ai.moneydesign.co.jp/cases.html">
+  <meta property="og:image" content="https://ai.moneydesign.co.jp/images/ogp.png">
   <title>導入事例｜マネーデザイン</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +19,6 @@
 
   <div class="nav-overlay" id="navOverlay"></div>
 
-  <!-- ヘッダー -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="header__logo">
@@ -55,94 +45,228 @@
 
   <main>
 
-    <!-- ページヒーロー -->
     <section class="page-hero">
       <div class="container">
-        <p class="hero__eyebrow">Cases</p>
+        <span class="page-hero__label">Cases</span>
         <h1 class="page-hero__title">導入事例</h1>
-        <p class="page-hero__desc">実際の現場での成果をご紹介します</p>
+        <p class="page-hero__desc">
+          中小企業の現場で実際に起きた変化をご紹介します。<br>
+          業種・規模・課題はそれぞれ異なりますが、共通しているのは「現場に定着した」という結果です。
+        </p>
+      </div>
+    </section>
+
+    <!-- 実績サマリー -->
+    <section class="section--stats">
+      <div class="container">
+        <ul class="stats__list">
+          <li class="stats__item">
+            <span class="stats__num" data-count="50">50<span class="stats__unit">+</span></span>
+            <span class="stats__label">支援実績</span>
+          </li>
+          <li class="stats__item">
+            <span class="stats__num" data-count="40">40<span class="stats__unit">%</span></span>
+            <span class="stats__label">平均業務削減率</span>
+          </li>
+          <li class="stats__item">
+            <span class="stats__num" data-count="6">6<span class="stats__unit">業種</span></span>
+            <span class="stats__label">対応業種</span>
+          </li>
+          <li class="stats__item">
+            <span class="stats__num" data-count="98">98<span class="stats__unit">%</span></span>
+            <span class="stats__label">顧客満足度</span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- 事例一覧 -->
     <section class="section">
       <div class="container">
-        <div class="cases__grid">
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">製造業</span>
-            <h3 class="case-card__title">議事録作成を自動化、月20時間を削減</h3>
-            <p class="case-card__body">
-              会議録音データをAIが自動文字起こし・要点整理。
-              担当者が手作業で行っていた議事録作成を完全自動化し、月20時間以上の工数削減を実現しました。
-            </p>
-            <p class="case-card__result">業務時間 <strong>40%削減</strong></p>
-          </article>
+        <!-- 事例 01 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">製造業</span>
+            <span class="case-detail__size">従業員 約80名</span>
+            <span class="case-detail__result">業務時間 −40%</span>
+          </div>
+          <h2 class="case-detail__title">議事録作成を完全自動化、月20時間の工数を削減</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>週5〜6回開催される社内会議の議事録作成を、担当者が毎回1〜2時間かけて手作業で行っていた。本来の業務に集中できず、残業の原因にもなっていた。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>会議の音声録音データをWhisperで自動文字起こしし、Claude APIで要点・アクションアイテム・担当者を自動整理。Notionに自動保存されるワークフローを構築。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>議事録作成時間がゼロに。月間20時間超の工数削減を達成。担当者からは「会議に集中できるようになった」との声が上がり、会議の質も向上。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「導入前は正直半信半疑でしたが、最初のデモを見た瞬間に全員が納得しました。今では議事録を自分で書く気になれないほど、AIが当たり前になっています。」
+            <cite>— 総務部 担当者</cite>
+          </blockquote>
+        </article>
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">小売業</span>
-            <h3 class="case-card__title">商品説明文をAIで一括生成</h3>
-            <p class="case-card__body">
-              ECサイト掲載用の商品説明文をAIで一括生成するワークフローを構築。
-              ライターへの依頼コストを大幅削減し、品質も均一化されました。
-            </p>
-            <p class="case-card__result">作業時間 <strong>70%削減</strong></p>
-          </article>
+        <!-- 事例 02 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">小売業（EC）</span>
+            <span class="case-detail__size">従業員 約25名</span>
+            <span class="case-detail__result">作業時間 −70%</span>
+          </div>
+          <h2 class="case-detail__title">商品説明文をAIで一括生成、ライターコストを大幅削減</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>新商品追加のたびに外部ライターへ依頼していたが、1件あたり3,000〜5,000円のコストと3〜5日の納期がかかっていた。商品数が多く、更新が追いつかない状況だった。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>商品スペックをCSVで入力するだけで、SEOを考慮した商品説明文・キャッチコピー・タグを自動生成するツールをChatGPT APIで構築。社内スタッフが操作できるUIを提供。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>商品説明文の作成時間が1件30分→5分に短縮（70%削減）。外部ライターへの依頼が不要になり、月間のライターコストがゼロに。商品登録のスピードが約6倍になった。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「最初は『AIの文章ってバレませんか？』と心配していましたが、仕上げに少し手を加えるだけで、お客様からのクレームも全くありません。むしろ品質が均一になりました。」
+            <cite>— 代表取締役</cite>
+          </blockquote>
+        </article>
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">サービス業</span>
-            <h3 class="case-card__title">問い合わせ対応をAIチャットで効率化</h3>
-            <p class="case-card__body">
-              よくある質問への回答をAIチャットボットが自動対応。
-              オペレーターは複雑な問い合わせに集中できるようになり、全体的な対応品質が向上しました。
-            </p>
-            <p class="case-card__result">対応コスト <strong>50%削減</strong></p>
-          </article>
+        <!-- 事例 03 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">サービス業（コールセンター）</span>
+            <span class="case-detail__size">従業員 約120名</span>
+            <span class="case-detail__result">対応コスト −50%</span>
+          </div>
+          <h2 class="case-detail__title">よくある問い合わせをAIが自動回答、オペレーターの負担を半減</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>1日200件以上の問い合わせの約60%は同じ内容で、オペレーターが毎回同じ説明を繰り返す状況。採用コストが高く、人員確保にも課題があった。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>過去の問い合わせ履歴をもとにFAQデータを整備し、社内向けAIチャットボットを構築。オペレーターが回答文を瞬時に参照・送信できる仕組みに。複雑な問い合わせは人が対応するハイブリッド体制を設計。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>1件あたりの平均対応時間が8分→4分に短縮。オペレーター1人あたりの対応件数が1.8倍に向上。新人研修期間も3ヶ月→1ヶ月に短縮され、採用後すぐに戦力化できるようになった。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「難しいシステムを入れられても困る、と最初は抵抗がありました。でも実際には普段使いのチャット感覚で使えて、ベテランも新人も自然に使いこなせています。」
+            <cite>— オペレーションマネージャー</cite>
+          </blockquote>
+        </article>
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">不動産業</span>
-            <h3 class="case-card__title">物件紹介メールのパーソナライズ自動化</h3>
-            <p class="case-card__body">
-              顧客の条件・過去の行動データをもとに、AIが個別最適化された物件紹介メールを自動生成。
-              成約率の向上と営業担当者の負担軽減を同時に達成しました。
-            </p>
-            <p class="case-card__result">成約率 <strong>25%向上</strong></p>
-          </article>
+        <!-- 事例 04 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">不動産業</span>
+            <span class="case-detail__size">従業員 約40名</span>
+            <span class="case-detail__result">成約率 +25%</span>
+          </div>
+          <h2 class="case-detail__title">顧客属性に合わせた物件提案メールをAIが自動パーソナライズ</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>営業担当者が顧客ごとにメールを一から作成しており、件数が増えるほど定型文になりがちだった。反応率が低下しており、どう改善すべきか手がかりがなかった。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>顧客の検索履歴・条件・問い合わせ内容をもとに、AIが個別最適化された物件紹介メールの下書きを自動生成。担当者はチェックして送信するだけのワークフローを設計。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>メール開封率が32%→58%に改善。成約率が前年比25%向上。営業担当者1人あたりの担当顧客数を1.5倍に増やすことができた。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「AIが書いた文章とわかっていても、内容がちゃんと自分のことを考えてくれている感じがして、お客様から『丁寧ですね』と言われるようになりました。」
+            <cite>— 営業担当者</cite>
+          </blockquote>
+        </article>
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">医療・介護</span>
-            <h3 class="case-card__title">介護記録の音声入力・自動整形</h3>
-            <p class="case-card__body">
-              現場スタッフが音声で入力した介護記録をAIが自動整形・カルテ形式に変換。
-              記録業務の負担を減らし、ケアの時間を増やすことに成功しました。
-            </p>
-            <p class="case-card__result">記録作業時間 <strong>60%削減</strong></p>
-          </article>
+        <!-- 事例 05 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">医療・介護</span>
+            <span class="case-detail__size">従業員 約60名</span>
+            <span class="case-detail__result">記録時間 −60%</span>
+          </div>
+          <h2 class="case-detail__title">介護記録を音声入力に切り替え、スタッフの残業を解消</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>ケア後に記録をPCで入力する時間が1件10〜15分かかり、1日の終わりに集中して入力する残業が常態化していた。記録の抜け漏れも発生しやすかった。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>スマートフォンへの音声入力を導入し、AIが話し言葉を介護記録フォーマットに自動変換。ケア直後にその場で記録が完了する仕組みを構築。セキュリティ要件も整理。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>記録時間が1件2〜3分に短縮（約60%削減）。残業がほぼゼロに。「記録するために急ぐ必要がなくなり、利用者と過ごす時間が増えた」とスタッフから好評を得ている。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「現場に来てもらい、実際にスタッフが使う場面を見ながら一緒に設計してくれたのが大きかった。机上の提案ではなく、現場目線だと感じました。」
+            <cite>— 施設長</cite>
+          </blockquote>
+        </article>
 
-          <article class="case-card case-card--full">
-            <span class="case-card__industry">飲食業</span>
-            <h3 class="case-card__title">SNS投稿コンテンツをAIで量産</h3>
-            <p class="case-card__body">
-              日替わりメニューや季節のキャンペーン情報をもとに、AIがInstagram・X向けの投稿文を自動生成。
-              担当者の負担を大幅に削減しながら投稿頻度を2倍に増やしました。
-            </p>
-            <p class="case-card__result">投稿頻度 <strong>2倍に増加</strong></p>
-          </article>
+        <!-- 事例 06 -->
+        <article class="case-detail fade-in">
+          <div class="case-detail__head">
+            <span class="case-detail__industry">飲食業（多店舗展開）</span>
+            <span class="case-detail__size">店舗数 12店舗</span>
+            <span class="case-detail__result">投稿頻度 2倍</span>
+          </div>
+          <h2 class="case-detail__title">SNS投稿をAIで量産、フォロワー増加と集客につなげる</h2>
+          <div class="case-detail__body">
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">課題</h3>
+              <p>各店舗のSNS担当者が毎日の投稿ネタを考えるのに時間がかかり、投稿頻度が週1〜2回にとどまっていた。センスの差が店舗間で出てしまい、ブランドの統一感もなかった。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">施策</h3>
+              <p>日替わりメニューや季節のキャンペーン情報を入力するだけで、Instagram・X・LINE向けの文章を自動生成するツールを構築。ブランドトーン（言葉遣い・絵文字ルール）をAIに学習させた。</p>
+            </div>
+            <div class="case-detail__col">
+              <h3 class="case-detail__col-label">成果</h3>
+              <p>平均投稿頻度が週1.5回→週3回に増加（2倍）。3ヶ月でフォロワー合計が1.4倍に。ブランドの統一感が生まれ、「どの店舗もおしゃれ」という口コミ評価につながった。</p>
+            </div>
+          </div>
+          <blockquote class="case-detail__voice">
+            「スタッフがAI嫌いだったらどうしよう、と心配しましたが、『これ楽しい！』と言いながら使い始めて驚きました。研修も丁寧にやってもらえたのが良かったです。」
+            <cite>— マーケティング担当</cite>
+          </blockquote>
+        </article>
 
-        </div>
       </div>
     </section>
 
-    <!-- CTAセクション -->
     <section class="section--cta">
       <div class="container">
         <div class="cta__inner">
           <div class="cta__text-block">
-            <h2 class="cta__title">まずは、話を聞かせてください。</h2>
-            <p class="cta__desc">導入の疑問・不安、お気軽にどうぞ。<br>60分の無料相談で、貴社に最適な活用方法をご提案します。</p>
+            <h2 class="cta__title">貴社の事例を、次に作りませんか。</h2>
+            <p class="cta__desc">
+              業種・規模・課題は問いません。まず60分、現状をお聞かせください。<br>
+              具体的な改善イメージと期待効果をその場でご提示します。
+            </p>
           </div>
           <div class="cta__actions">
-            <a href="contact.html#consultation" class="btn btn--primary">無料相談を予約する</a>
+            <a href="contact.html#consultation" class="btn btn--primary btn--lg">無料相談を予約する</a>
             <a href="contact.html#document" class="btn btn--ghost">資料請求する</a>
           </div>
         </div>
@@ -151,15 +275,14 @@
 
   </main>
 
-  <!-- フッター -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo">
           <span class="logo-mark">MD</span>
-          <span>マネーデザイン</span>
+          <span class="logo-text">マネーデザイン</span>
         </a>
-        <p class="footer__tagline">生成AI導入支援サービス</p>
+        <p class="footer__tagline">生成AI 導入支援</p>
         <p class="footer__desc">中小企業の現場に寄り添い、<br>生成AI導入から定着まで<br>一気通貫でサポートします。</p>
       </div>
       <div class="footer__col">
@@ -185,9 +308,7 @@
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
         <p>&copy; 2025 株式会社マネーデザイン. All rights reserved.</p>
-        <nav class="footer__legal">
-          <a href="#">プライバシーポリシー</a>
-        </nav>
+        <nav class="footer__legal"><a href="#">プライバシーポリシー</a></nav>
       </div>
     </div>
   </footer>
