@@ -19,6 +19,9 @@
   --accent:        #9c7a4e;
   --accent-dim:    rgba(156, 122, 78, 0.1);
 
+  /* Nav active — アイボリーの補色（H=217.5°のブルー） */
+  --nav-active:    #3a5d99;
+
   /* Borders */
   --border:        rgba(26, 24, 22, 0.1);
   --border-strong: rgba(26, 24, 22, 0.22);
