@@ -93,6 +93,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section--sm {
   padding: var(--sp-12) 0;
 }
+.section--white {
+  background: #ffffff;
+}
+.section--ivory {
+  background: var(--bg);   /* #f9f6f1 */
+}
 
 .section__header {
   margin-bottom: var(--sp-12);
