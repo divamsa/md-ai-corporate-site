@@ -252,7 +252,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* --- Hero --- */
 .section--hero {
-  padding: var(--sp-24) 0;
+  padding: var(--sp-12) 0;
   min-height: calc(100vh - 64px);
   display: flex;
   align-items: center;
