@@ -366,7 +366,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .statement__text {
   font-family: var(--font-sans);
   font-size: clamp(1.4rem, 3vw, 2.2rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-sub);
   line-height: 1.65;
   max-width: 800px;
@@ -374,7 +374,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .statement__text strong {
   color: var(--text);
-  font-weight: 400;
+  font-weight: 500;
 }
 .statement__sub {
   font-size: var(--text-base);
