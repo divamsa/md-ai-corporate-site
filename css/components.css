@@ -683,9 +683,9 @@
   text-transform: uppercase;
 }
 .cases-row__title {
-  font-size: var(--text-base);
+  font-size: 1.125rem;
   color: var(--text);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
   transition: color var(--transition);
 }
