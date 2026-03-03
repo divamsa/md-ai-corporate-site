@@ -832,7 +832,7 @@
 
 .challenges__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   margin-top: var(--sp-8);
   background: var(--border-strong);
@@ -841,9 +841,9 @@
 .challenge__item {
   position: relative;
   background: var(--bg-surface);
-  border-top: 2px solid var(--accent);
+  border-left: 3px solid var(--accent);
   border-radius: 0;
-  padding: var(--sp-7) var(--sp-5) var(--sp-6);
+  padding: var(--sp-6) var(--sp-5) var(--sp-6) var(--sp-6);
   overflow: hidden;
 }
 
@@ -854,13 +854,13 @@
 
 .challenge__num {
   position: absolute;
-  top: 8px;
-  right: 14px;
+  top: 4px;
+  right: 16px;
   font-family: var(--font-mono);
-  font-size: 4.5rem;
+  font-size: 5rem;
   font-weight: 500;
   color: var(--accent);
-  opacity: 0.15;
+  opacity: 0.12;
   line-height: 1;
   letter-spacing: -0.04em;
   user-select: none;
@@ -1314,7 +1314,7 @@
    ========================================== */
 
 @media (max-width: 900px) {
-  .challenges__grid   { grid-template-columns: repeat(2, 1fr); }
+  .challenges__grid   { grid-template-columns: 1fr; }
   .process__steps     { grid-template-columns: repeat(2, 1fr); gap: var(--sp-8) var(--sp-4); }
   .process__steps::before { display: none; }
   .reasons__grid      { grid-template-columns: repeat(2, 1fr); }
