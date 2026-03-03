@@ -353,7 +353,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: rgba(249, 246, 241, 0.38);
+  color: rgba(249, 246, 241, 0.55);
   margin-top: var(--sp-1);
   letter-spacing: 0.08em;
 }
