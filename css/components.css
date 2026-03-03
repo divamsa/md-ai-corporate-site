@@ -833,24 +833,39 @@
 .challenges__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-4);
+  gap: 1px;
   margin-top: var(--sp-8);
+  background: var(--border-strong);
 }
 
 .challenge__item {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: var(--sp-5);
+  position: relative;
+  background: var(--bg-surface);
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
+  padding: var(--sp-7) var(--sp-5) var(--sp-6);
+  overflow: hidden;
+}
+
+.challenge__body {
+  position: relative;
+  z-index: 1;
 }
 
 .challenge__num {
+  position: absolute;
+  top: 8px;
+  right: 14px;
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: 4.5rem;
+  font-weight: 500;
   color: var(--accent);
-  letter-spacing: .05em;
-  margin-bottom: var(--sp-3);
-  display: block;
+  opacity: 0.15;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .challenge__title {
