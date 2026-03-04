@@ -89,15 +89,17 @@ if (fadeEls.length > 0) {
 
 /* --- カウントアップ (T-203) --- */
 function countUp(el, target, duration = 1800) {
+  const unitEl = el.querySelector('.stats__unit');
+  const unitHTML = unitEl ? unitEl.outerHTML : '';
   const start = performance.now();
   const update = (now) => {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
     // easeOutQuart
     const eased = 1 - Math.pow(1 - progress, 4);
-    el.textContent = Math.floor(eased * target);
+    const num = progress < 1 ? Math.floor(eased * target) : target;
+    el.innerHTML = num + unitHTML;
     if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target;
   };
   requestAnimationFrame(update);
 }
