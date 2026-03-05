@@ -1379,6 +1379,125 @@
 }
 
 /* ==========================================
+   ABOUT — Vision / Value (MVV)
+   ========================================== */
+
+.mvv__vision-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-10);
+}
+
+.mvv__vision-card {
+  padding: var(--sp-7) var(--sp-6);
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  transition: border-top-color 0.2s, box-shadow 0.2s;
+}
+
+.mvv__vision-card:hover {
+  border-top-color: #b8945e;
+  box-shadow: 0 4px 24px rgba(156,122,78,0.08);
+}
+
+.mvv__vision-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--accent);
+  opacity: .3;
+  line-height: 1;
+  margin-bottom: var(--sp-4);
+}
+
+.mvv__vision-body {
+  font-size: var(--text-base);
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin: 0;
+}
+
+.mvv__vision-body strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Value — 4-column grid */
+.mvv__value-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+  margin-top: var(--sp-10);
+}
+
+.mvv__value-card {
+  padding: var(--sp-6);
+  background: var(--bg-surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  transition: background 0.2s;
+}
+
+.mvv__value-card:hover {
+  background: var(--bg);
+  border-color: rgba(156,122,78,0.3);
+}
+
+.mvv__value-top {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+}
+
+.mvv__value-kanji {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.mvv__value-names {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mvv__value-name-ja {
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.mvv__value-name-en {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.mvv__value-desc {
+  font-size: var(--text-sm);
+  line-height: 1.85;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.mvv__value-desc em {
+  font-style: normal;
+  color: var(--text);
+}
+
+/* ==========================================
    RESPONSIVE — 新コンポーネント
    ========================================== */
 
@@ -1389,6 +1508,8 @@
   .reasons__grid      { grid-template-columns: repeat(2, 1fr); }
   .case-detail__body  { grid-template-columns: 1fr; gap: var(--sp-5); }
   .approach__grid     { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .mvv__vision-grid   { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .mvv__value-grid    { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
   .about__message-inner { grid-template-columns: 1fr; }
   .about__message-photo { position: static; margin-bottom: var(--sp-8); order: -1; }
   .about__photo-img { aspect-ratio: 16 / 7; max-height: 300px; }
