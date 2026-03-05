@@ -9,209 +9,183 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:          #07070d;
-      --bg2:         #0d0d18;
-      --bg-card:     #12121f;
       --gold:        #c9a84c;
       --gold-light:  #e8c96a;
-      --gold-glow:   rgba(201, 168, 76, 0.08);
-      --gold-border: rgba(201, 168, 76, 0.30);
+      --gold-dim:    rgba(201,168,76,0.18);
+      --gold-border: rgba(201,168,76,0.35);
+      --bg:          #07070d;
+      --bg2:         #0d0d18;
+      --bg-card:     #131320;
       --text:        #ede8df;
-      --text-dim:    rgba(237, 232, 223, 0.58);
-      --text-subtle: rgba(237, 232, 223, 0.32);
-      --border:      rgba(255, 255, 255, 0.10);
+      --text-dim:    rgba(237,232,223,0.60);
+      --text-faint:  rgba(237,232,223,0.30);
+      --border:      rgba(255,255,255,0.10);
     }
 
-    html { scroll-behavior: smooth; }
+    html, body {
+      height: 100%;
+      overflow: hidden; /* no scroll — everything fits in 100vh */
+    }
 
     body {
       font-family: 'Noto Sans JP', sans-serif;
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    /* ─── WRAPPER (z-index base) ─── */
+    /* ── PAGE GRID ──────────────────────────────────────── */
     .page {
-      position: relative;
-      z-index: 1;
+      height: 100vh;
+      min-height: 640px;
+      display: grid;
+      grid-template-rows: 56px 1fr 1.4fr 1.4fr 44px;
+      grid-template-columns: 1fr;
     }
 
-    /* ─── HEADER ─────────────────────────────────────────── */
+    /* ── HEADER ─────────────────────────────────────────── */
     .site-header {
-      padding: 2.8rem 5rem 2rem;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: flex-end;
+      padding: 0 3.5rem;
       border-bottom: 1px solid var(--border);
+      background: var(--bg);
     }
-    .logo-mark {
+    .logo-wrap { display: flex; align-items: baseline; gap: 1rem; }
+    .logo-en {
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       letter-spacing: 0.22em;
       color: var(--gold);
       text-transform: uppercase;
     }
     .logo-ja {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 300;
-      color: var(--text-dim);
-      letter-spacing: 0.12em;
-      margin-top: 0.3rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
     }
-    .header-tag {
+    .header-badge {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       letter-spacing: 0.25em;
-      color: var(--text-subtle);
+      color: var(--text-faint);
       text-transform: uppercase;
     }
 
-    /* ─── MISSION ────────────────────────────────────────── */
-    .section-mission {
-      padding: 7rem 5rem 7rem;
+    /* ── SECTION BASE ───────────────────────────────────── */
+    .section-mission,
+    .section-vision,
+    .section-value {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3.5rem;
+      border-top: 1px solid var(--border);
       position: relative;
       overflow: hidden;
     }
-    .mission-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-      top: 50%;
-      left: 45%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .mission-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .eyebrow {
+
+    /* ── SECTION LABEL ──────────────────────────────────── */
+    .sec-label {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 2.8rem;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
     }
-    .eyebrow-line {
+    .sec-label-line {
       display: block;
-      width: 32px;
+      width: 24px;
       height: 1px;
       background: var(--gold);
       flex-shrink: 0;
     }
-    .eyebrow-text {
+    .sec-label-text {
       font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       letter-spacing: 0.32em;
       color: var(--gold);
       text-transform: uppercase;
     }
-    .mission-statement {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.9rem, 3.2vw, 3rem);
-      font-weight: 400;
-      line-height: 1.85;
-      letter-spacing: 0.06em;
-      max-width: 860px;
+
+    /* ── MISSION ────────────────────────────────────────── */
+    .section-mission {
+      background: var(--bg);
     }
-    .mission-statement em {
+    /* soft glow */
+    .section-mission::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .mission-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 1;
+    }
+    .mission-text em {
       font-style: normal;
       color: var(--gold-light);
     }
     .mission-rule {
-      margin-top: 3.5rem;
-      width: 100px;
+      width: 64px;
       height: 1px;
       background: linear-gradient(to right, var(--gold), transparent);
-    }
-    .side-label {
-      position: absolute;
-      right: 4.5rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.45em;
-      color: var(--text-subtle);
-      white-space: nowrap;
-      text-transform: uppercase;
-      z-index: 1;
+      margin-top: 1.2rem;
     }
 
-    /* ─── SECTION HEADING ────────────────────────────────── */
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 3.5rem;
-    }
-    .heading-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.32em;
-      color: var(--gold);
-      text-transform: uppercase;
-      flex-shrink: 0;
-    }
-    .heading-rule {
-      height: 1px;
-      width: 160px;
-      background: linear-gradient(to right, var(--gold-border), transparent);
-    }
-
-    /* ─── VISION ─────────────────────────────────────────── */
+    /* ── VISION ─────────────────────────────────────────── */
     .section-vision {
-      padding: 5.5rem 5rem 6rem;
       background: var(--bg2);
-      border-top: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
     }
     .vision-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
+      gap: 1rem;
     }
     .vision-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-top: 2px solid var(--gold-border);
-      padding: 2.8rem 2.2rem 2.8rem;
+      padding: 1.2rem 1.4rem 1.3rem;
       position: relative;
-      transition: border-top-color 0.25s, background 0.25s;
+      transition: border-top-color 0.2s, background 0.2s;
     }
     .vision-card:hover {
       border-top-color: var(--gold);
-      background: #151525;
+      background: #161628;
     }
     .vision-card::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 22px;
-      height: 22px;
-      border-bottom: 1px solid var(--gold-border);
-      border-right: 1px solid var(--gold-border);
+      bottom: 0; right: 0;
+      width: 16px; height: 16px;
+      border-bottom: 1px solid var(--gold-dim);
+      border-right:  1px solid var(--gold-dim);
     }
     .vision-num {
       display: block;
       font-family: 'DM Mono', monospace;
-      font-size: 2.6rem;
-      font-weight: 400;
-      color: rgba(201, 168, 76, 0.14);
+      font-size: 1.6rem;
+      color: rgba(201,168,76,0.12);
       line-height: 1;
-      margin-bottom: 1.6rem;
+      margin-bottom: 0.7rem;
     }
     .vision-body {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.02rem;
-      font-weight: 400;
-      line-height: 2.05;
+      font-size: 0.88rem;
+      line-height: 1.9;
       letter-spacing: 0.04em;
       color: var(--text);
     }
@@ -220,113 +194,107 @@
       font-weight: 500;
     }
 
-    /* ─── VALUE ──────────────────────────────────────────── */
+    /* ── VALUE ──────────────────────────────────────────── */
     .section-value {
-      padding: 5.5rem 5rem 7rem;
-      position: relative;
-      z-index: 1;
+      background: var(--bg);
     }
     .value-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.4rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
     }
     .value-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      padding: 2.6rem 2.4rem;
-      display: grid;
-      grid-template-columns: 5.5rem 1fr;
-      grid-template-rows: auto auto;
-      column-gap: 1.6rem;
-      row-gap: 0;
-      transition: background 0.25s;
+      padding: 1.2rem 1.3rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: background 0.2s;
     }
     .value-card:hover {
-      background: #151525;
+      background: #161628;
+    }
+    .value-top {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
     }
     .value-kanji {
       font-family: 'Noto Serif JP', serif;
-      font-size: 4rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: var(--gold);
       line-height: 1;
-      grid-column: 1;
-      grid-row: 1 / 3;
-      align-self: center;
     }
-    .value-name-row {
-      grid-column: 2;
-      grid-row: 1;
+    .value-names {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-      padding-bottom: 0.55rem;
-      align-self: end;
+      gap: 0.15rem;
     }
     .value-name-ja {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.12rem;
+      font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       color: var(--text);
     }
     .value-name-en {
       font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.28em;
-      color: var(--text-subtle);
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      color: var(--text-faint);
       text-transform: uppercase;
     }
     .value-desc {
-      grid-column: 2;
-      grid-row: 2;
-      font-size: 0.875rem;
-      line-height: 1.95;
+      font-size: 0.75rem;
+      line-height: 1.85;
       color: var(--text-dim);
-      letter-spacing: 0.03em;
-      padding-top: 0.1rem;
+      letter-spacing: 0.02em;
     }
     .value-desc em {
       font-style: normal;
       color: var(--text);
     }
 
-    /* ─── FOOTER ─────────────────────────────────────────── */
+    /* ── FOOTER ─────────────────────────────────────────── */
     .site-footer {
-      padding: 2.5rem 5rem;
-      border-top: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 1;
+      justify-content: space-between;
+      padding: 0 3.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
     }
-    .footer-name {
-      font-size: 0.78rem;
+    .footer-co {
+      font-size: 0.68rem;
       font-weight: 300;
-      color: var(--text-subtle);
+      color: var(--text-faint);
       letter-spacing: 0.1em;
     }
-    .footer-year {
+    .footer-yr {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--text-subtle);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
     }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .site-header,
+    /* ── RESPONSIVE fallback (small screens allow scroll) ── */
+    @media (max-height: 600px), (max-width: 640px) {
+      html, body { overflow: auto; }
+      .page {
+        height: auto;
+        grid-template-rows: auto;
+      }
       .section-mission,
       .section-vision,
-      .section-value,
-      .site-footer { padding-left: 1.8rem; padding-right: 1.8rem; }
-
+      .section-value {
+        padding: 2.5rem 1.5rem;
+      }
       .vision-grid { grid-template-columns: 1fr; }
-      .value-grid  { grid-template-columns: 1fr; }
-      .side-label  { display: none; }
-      .mission-statement { font-size: 1.75rem; }
+      .value-grid  { grid-template-columns: repeat(2, 1fr); }
+      .site-header,
+      .site-footer { padding: 1rem 1.5rem; height: auto; }
     }
   </style>
 </head>
@@ -335,37 +303,32 @@
 
   <!-- HEADER -->
   <header class="site-header">
-    <div>
-      <div class="logo-mark">Money Design</div>
-      <div class="logo-ja">株式会社マネーデザイン</div>
+    <div class="logo-wrap">
+      <span class="logo-en">Money Design</span>
+      <span class="logo-ja">株式会社マネーデザイン</span>
     </div>
-    <div class="header-tag">Mission &nbsp;·&nbsp; Vision &nbsp;·&nbsp; Value</div>
+    <span class="header-badge">Mission · Vision · Value</span>
   </header>
 
-  <!-- ── MISSION ─────────────────────────────────────────── -->
+  <!-- MISSION -->
   <section class="section-mission">
-    <div class="mission-glow"></div>
-    <div class="mission-inner">
-      <div class="eyebrow">
-        <span class="eyebrow-line"></span>
-        <span class="eyebrow-text">Mission</span>
-      </div>
-      <h1 class="mission-statement">
-        <em>変化を先に知った者が持つ優位</em>を、<br>
-        中小企業に届ける。
-      </h1>
-      <div class="mission-rule"></div>
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Mission</span>
     </div>
-    <span class="side-label">Why We Exist</span>
+    <h1 class="mission-text">
+      <em>変化を先に知った者が持つ優位</em>を、<br>
+      中小企業に届ける。
+    </h1>
+    <div class="mission-rule"></div>
   </section>
 
-  <!-- ── VISION ──────────────────────────────────────────── -->
+  <!-- VISION -->
   <section class="section-vision">
-    <div class="section-heading">
-      <span class="heading-label">Vision</span>
-      <span class="heading-rule"></span>
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Vision</span>
     </div>
-
     <div class="vision-grid">
 
       <div class="vision-card">
@@ -398,20 +361,21 @@
     </div>
   </section>
 
-  <!-- ── VALUE ───────────────────────────────────────────── -->
+  <!-- VALUE -->
   <section class="section-value">
-    <div class="section-heading">
-      <span class="heading-label">Value</span>
-      <span class="heading-rule"></span>
+    <div class="sec-label">
+      <span class="sec-label-line"></span>
+      <span class="sec-label-text">Value</span>
     </div>
-
     <div class="value-grid">
 
       <div class="value-card">
-        <span class="value-kanji">正</span>
-        <div class="value-name-row">
-          <span class="value-name-ja">正直</span>
-          <span class="value-name-en">Honesty</span>
+        <div class="value-top">
+          <span class="value-kanji">正</span>
+          <div class="value-names">
+            <span class="value-name-ja">正直</span>
+            <span class="value-name-en">Honesty</span>
+          </div>
         </div>
         <p class="value-desc">
           AIで何ができて何ができないかを、<br>
@@ -420,10 +384,12 @@
       </div>
 
       <div class="value-card">
-        <span class="value-kanji">現</span>
-        <div class="value-name-row">
-          <span class="value-name-ja">現場</span>
-          <span class="value-name-en">Field First</span>
+        <div class="value-top">
+          <span class="value-kanji">現</span>
+          <div class="value-names">
+            <span class="value-name-ja">現場</span>
+            <span class="value-name-en">Field First</span>
+          </div>
         </div>
         <p class="value-desc">
           理論や実績ではなく、<br>
@@ -432,28 +398,30 @@
       </div>
 
       <div class="value-card">
-        <span class="value-kanji">伴</span>
-        <div class="value-name-row">
-          <span class="value-name-ja">伴走</span>
-          <span class="value-name-en">Accompaniment</span>
+        <div class="value-top">
+          <span class="value-kanji">伴</span>
+          <div class="value-names">
+            <span class="value-name-ja">伴走</span>
+            <span class="value-name-en">Accompaniment</span>
+          </div>
         </div>
         <p class="value-desc">
           「導入した実績」ではなく、<br>
-          <em>「使い続けている状態」</em>を目標にする。<br>
-          定着するまで手を離さない。
+          <em>「使い続けている状態」</em>を目標にする。
         </p>
       </div>
 
       <div class="value-card">
-        <span class="value-kanji">適</span>
-        <div class="value-name-row">
-          <span class="value-name-ja">適応</span>
-          <span class="value-name-en">Adaptability</span>
+        <div class="value-top">
+          <span class="value-kanji">適</span>
+          <div class="value-names">
+            <span class="value-name-ja">適応</span>
+            <span class="value-name-en">Adaptability</span>
+          </div>
         </div>
         <p class="value-desc">
           自分たち自身も<em>学び続ける</em>。<br>
-          「今日の正解が明日も正解とは限らない」を、<br>
-          自らに課す。
+          今日の正解が、明日も正解とは限らない。
         </p>
       </div>
 
@@ -462,10 +430,10 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <span class="footer-name">株式会社マネーデザイン</span>
-    <span class="footer-year">2026</span>
+    <span class="footer-co">株式会社マネーデザイン</span>
+    <span class="footer-yr">2026</span>
   </footer>
 
-</div><!-- /.page -->
+</div>
 </body>
 </html>
