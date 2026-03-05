@@ -1248,11 +1248,20 @@
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 400;
   line-height: 1.55;
-  margin: 0 0 var(--sp-8);
-  padding: 0 0 var(--sp-6);
-  border-bottom: 1px solid var(--border);
+  margin: 0 0 var(--sp-4);
+  padding: 0;
+  border-bottom: none;
   font-style: normal;
   letter-spacing: -.01em;
+}
+
+.about__message-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  margin: 0 0 var(--sp-8);
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: .03em;
 }
 
 .about__message-body h3 {
