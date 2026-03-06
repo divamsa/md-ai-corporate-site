@@ -1438,8 +1438,7 @@
   font-family: var(--font-mono);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  color: #c9a46e;
-  opacity: .5;
+  color: #ffffff;
   line-height: 1;
   margin-bottom: var(--sp-5);
 }
@@ -1448,7 +1447,7 @@
   font-size: var(--text-base);
   line-height: 2;
   letter-spacing: 0.03em;
-  color: rgba(255,255,255,.8);
+  color: #ffffff;
   margin: 0;
 }
 
@@ -1499,7 +1498,7 @@
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.22em;
-  color: #c9a46e;
+  color: #ffffff;
   text-transform: uppercase;
   margin: 0 0 var(--sp-5);
 }
@@ -1508,7 +1507,7 @@
 .mvv__value-desc {
   font-size: var(--text-sm);
   line-height: 1.85;
-  color: rgba(255,255,255,.7);
+  color: #ffffff;
   margin: 0;
 }
 
