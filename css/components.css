@@ -1391,7 +1391,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   letter-spacing: .18em;
-  color: rgba(156,122,78,.85);
+  color: #c9a46e;
   text-transform: uppercase;
   display: block;
   margin-bottom: var(--sp-4);
@@ -1400,7 +1400,7 @@
 .mvv__title {
   font-size: clamp(1.3rem, 3vw, 1.9rem);
   font-weight: 400;
-  color: rgba(249,246,241,.9);
+  color: #ffffff;
   letter-spacing: -.01em;
   line-height: 1.4;
   margin: 0;
@@ -1420,17 +1420,17 @@
 
 .mvv__vision-card {
   padding: var(--sp-8) var(--sp-7);
-  background: rgba(249,246,241,.04);
+  background: rgba(255,255,255,.05);
   border-radius: 8px;
-  border: 1px solid rgba(249,246,241,.1);
-  border-top: 2px solid rgba(156,122,78,.7);
+  border: 1px solid rgba(255,255,255,.12);
+  border-top: 2px solid #c9a46e;
   text-align: center;
   transition: background 0.2s, border-top-color 0.2s;
 }
 
 .mvv__vision-card:hover {
-  background: rgba(249,246,241,.07);
-  border-top-color: rgba(156,122,78,1);
+  background: rgba(255,255,255,.09);
+  border-top-color: #e0bb8a;
 }
 
 .mvv__vision-num {
@@ -1438,7 +1438,8 @@
   font-family: var(--font-mono);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  color: rgba(156,122,78,.4);
+  color: #c9a46e;
+  opacity: .5;
   line-height: 1;
   margin-bottom: var(--sp-5);
 }
@@ -1447,13 +1448,13 @@
   font-size: var(--text-base);
   line-height: 2;
   letter-spacing: 0.03em;
-  color: rgba(249,246,241,.75);
+  color: rgba(255,255,255,.8);
   margin: 0;
 }
 
 .mvv__vision-body strong {
-  color: rgba(249,246,241,.95);
-  font-weight: 500;
+  color: #ffffff;
+  font-weight: 600;
 }
 
 /* ==========================================
@@ -1471,25 +1472,25 @@
 /* カードはVisionと同じスタイル */
 .mvv__value-card {
   padding: var(--sp-8) var(--sp-6);
-  background: rgba(249,246,241,.04);
+  background: rgba(255,255,255,.05);
   border-radius: 8px;
-  border: 1px solid rgba(249,246,241,.1);
-  border-top: 2px solid rgba(156,122,78,.7);
+  border: 1px solid rgba(255,255,255,.12);
+  border-top: 2px solid #c9a46e;
   text-align: center;
   transition: background 0.2s, border-top-color 0.2s;
 }
 
 .mvv__value-card:hover {
-  background: rgba(249,246,241,.07);
-  border-top-color: rgba(156,122,78,1);
+  background: rgba(255,255,255,.09);
+  border-top-color: #e0bb8a;
 }
 
 /* タイトル（正直 / 現場 / 伴走 / 適応） */
 .mvv__value-title {
   font-size: var(--text-base);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.1em;
-  color: rgba(249,246,241,.9);
+  color: #ffffff;
   margin: 0 0 var(--sp-2);
 }
 
@@ -1497,8 +1498,8 @@
 .mvv__value-en {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: rgba(156,122,78,.7);
+  letter-spacing: 0.22em;
+  color: #c9a46e;
   text-transform: uppercase;
   margin: 0 0 var(--sp-5);
 }
@@ -1507,7 +1508,7 @@
 .mvv__value-desc {
   font-size: var(--text-sm);
   line-height: 1.85;
-  color: rgba(249,246,241,.55);
+  color: rgba(255,255,255,.7);
   margin: 0;
 }
 
