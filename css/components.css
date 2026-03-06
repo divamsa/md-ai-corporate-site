@@ -1457,7 +1457,7 @@
 }
 
 /* ==========================================
-   ABOUT — Value（濃紺 / 4カラム / センター）
+   ABOUT — Value（Vision と完全統一 / 4カラム）
    ========================================== */
 
 .mvv__value-grid {
@@ -1468,49 +1468,42 @@
   padding-bottom: var(--sp-12);
 }
 
+/* カードはVisionと同じスタイル */
 .mvv__value-card {
-  padding: var(--sp-7) var(--sp-5);
+  padding: var(--sp-8) var(--sp-6);
   background: rgba(249,246,241,.04);
   border-radius: 8px;
   border: 1px solid rgba(249,246,241,.1);
+  border-top: 2px solid rgba(156,122,78,.7);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
-  transition: background 0.2s;
+  transition: background 0.2s, border-top-color 0.2s;
 }
 
 .mvv__value-card:hover {
   background: rgba(249,246,241,.07);
+  border-top-color: rgba(156,122,78,1);
 }
 
-.mvv__value-kanji {
-  display: block;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 700;
-  color: rgba(156,122,78,.9);
-  line-height: 1;
-  margin-bottom: var(--sp-3);
-}
-
-.mvv__value-name-ja {
+/* タイトル（正直 / 現場 / 伴走 / 適応） */
+.mvv__value-title {
   font-size: var(--text-base);
   font-weight: 500;
   letter-spacing: 0.1em;
   color: rgba(249,246,241,.9);
-  margin: 0;
+  margin: 0 0 var(--sp-2);
 }
 
-.mvv__value-name-en {
+/* 英語サブ */
+.mvv__value-en {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   color: rgba(156,122,78,.7);
   text-transform: uppercase;
-  margin: 0 0 var(--sp-3);
+  margin: 0 0 var(--sp-5);
 }
 
+/* 説明文 */
 .mvv__value-desc {
   font-size: var(--text-sm);
   line-height: 1.85;
