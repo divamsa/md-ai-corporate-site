@@ -1379,7 +1379,35 @@
 }
 
 /* ==========================================
-   ABOUT — Vision / Value (MVV)
+   ABOUT — MVV 共通ヘッダー（濃紺帯）
+   ========================================== */
+
+.mvv__header {
+  text-align: center;
+  padding: var(--sp-10) 0 0;
+}
+
+.mvv__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: .18em;
+  color: rgba(156,122,78,.85);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--sp-4);
+}
+
+.mvv__title {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 400;
+  color: rgba(249,246,241,.9);
+  letter-spacing: -.01em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ==========================================
+   ABOUT — Vision（濃紺 / 3カラム / センター）
    ========================================== */
 
 .mvv__vision-grid {
@@ -1387,20 +1415,22 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-6);
   margin-top: var(--sp-10);
+  padding-bottom: var(--sp-12);
 }
 
 .mvv__vision-card {
-  padding: var(--sp-7) var(--sp-6);
-  background: var(--bg);
+  padding: var(--sp-8) var(--sp-7);
+  background: rgba(249,246,241,.04);
   border-radius: 8px;
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--accent);
-  transition: border-top-color 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(249,246,241,.1);
+  border-top: 2px solid rgba(156,122,78,.7);
+  text-align: center;
+  transition: background 0.2s, border-top-color 0.2s;
 }
 
 .mvv__vision-card:hover {
-  border-top-color: #b8945e;
-  box-shadow: 0 4px 24px rgba(156,122,78,0.08);
+  background: rgba(249,246,241,.07);
+  border-top-color: rgba(156,122,78,1);
 }
 
 .mvv__vision-num {
@@ -1408,93 +1438,84 @@
   font-family: var(--font-mono);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  color: var(--accent);
-  opacity: .3;
+  color: rgba(156,122,78,.4);
   line-height: 1;
-  margin-bottom: var(--sp-4);
+  margin-bottom: var(--sp-5);
 }
 
 .mvv__vision-body {
   font-size: var(--text-base);
-  line-height: 1.9;
-  letter-spacing: 0.02em;
-  color: var(--text);
+  line-height: 2;
+  letter-spacing: 0.03em;
+  color: rgba(249,246,241,.75);
   margin: 0;
 }
 
 .mvv__vision-body strong {
-  color: var(--accent);
+  color: rgba(249,246,241,.95);
   font-weight: 500;
 }
 
-/* Value — 4-column grid */
+/* ==========================================
+   ABOUT — Value（濃紺 / 4カラム / センター）
+   ========================================== */
+
 .mvv__value-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-5);
   margin-top: var(--sp-10);
+  padding-bottom: var(--sp-12);
 }
 
 .mvv__value-card {
-  padding: var(--sp-6);
-  background: var(--bg-surface);
+  padding: var(--sp-7) var(--sp-5);
+  background: rgba(249,246,241,.04);
   border-radius: 8px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(249,246,241,.1);
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
+  align-items: center;
+  gap: var(--sp-2);
   transition: background 0.2s;
 }
 
 .mvv__value-card:hover {
-  background: var(--bg);
-  border-color: rgba(156,122,78,0.3);
-}
-
-.mvv__value-top {
-  display: flex;
-  align-items: baseline;
-  gap: var(--sp-3);
+  background: rgba(249,246,241,.07);
 }
 
 .mvv__value-kanji {
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  display: block;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 700;
-  color: var(--accent);
+  color: rgba(156,122,78,.9);
   line-height: 1;
-}
-
-.mvv__value-names {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  margin-bottom: var(--sp-3);
 }
 
 .mvv__value-name-ja {
   font-size: var(--text-base);
   font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--text);
+  letter-spacing: 0.1em;
+  color: rgba(249,246,241,.9);
+  margin: 0;
 }
 
 .mvv__value-name-en {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  color: var(--text-muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: rgba(156,122,78,.7);
   text-transform: uppercase;
+  margin: 0 0 var(--sp-3);
 }
 
 .mvv__value-desc {
   font-size: var(--text-sm);
   line-height: 1.85;
-  color: var(--text-light);
+  color: rgba(249,246,241,.55);
   margin: 0;
-}
-
-.mvv__value-desc em {
-  font-style: normal;
-  color: var(--text);
 }
 
 /* ==========================================
@@ -1510,6 +1531,8 @@
   .approach__grid     { grid-template-columns: 1fr; gap: var(--sp-4); }
   .mvv__vision-grid   { grid-template-columns: 1fr; gap: var(--sp-4); }
   .mvv__value-grid    { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+  .mvv__vision-card,
+  .mvv__value-card    { text-align: center; }
   .about__message-inner { grid-template-columns: 1fr; }
   .about__message-photo { position: static; margin-bottom: var(--sp-8); order: -1; }
   .about__photo-img { aspect-ratio: 16 / 7; max-height: 300px; }
