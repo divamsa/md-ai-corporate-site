@@ -50,12 +50,21 @@ async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
 
     container.innerHTML = items.map(p => postToItem(p, isListMode)).join('');
 
-    // IntersectionObserver で fade-in を再トリガー
-    container.querySelectorAll('.fade-in').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight) {
-        el.classList.add('visible');
-      }
-    });
+    // IntersectionObserver で fade-in を再トリガー（動的追加要素対応）
+    const fadeEls = container.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeEls.forEach(el => obs.observe(el));
+    } else {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
 
   } catch (err) {
     console.warn('Blog fetch:', err.message);
