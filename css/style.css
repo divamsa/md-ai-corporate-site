@@ -184,6 +184,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: var(--sp-2);
   flex-shrink: 0;
 }
+.header__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
 .logo-mark {
   font-family: var(--font-mono);
   font-size: 0.75rem;
