@@ -164,13 +164,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(26, 37, 53, 0.96);
+  background: rgba(249, 246, 241, 0.97);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(62, 184, 196, 0.18);
+  border-bottom: 1px solid rgba(156, 122, 78, 0.15);
   transition: border-color var(--transition);
 }
 .header.scrolled {
-  border-bottom-color: rgba(62, 184, 196, 0.35);
+  border-bottom-color: rgba(156, 122, 78, 0.3);
 }
 .header__inner {
   display: flex;
@@ -214,12 +214,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .nav__list a {
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(26, 24, 22, 0.65);
   font-weight: 400;
   transition: color var(--transition);
   letter-spacing: 0.01em;
 }
-.nav__list a:hover { color: #3eb8c4; }
+.nav__list a:hover { color: #9c7a4e; }
 .header__cta { margin-left: var(--sp-4); }
 /* ヘッダー内CTAボタン：ダーク背景に合わせてアクアティールに */
 .header__cta .btn--primary,
