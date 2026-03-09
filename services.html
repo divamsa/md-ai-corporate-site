@@ -3,43 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="マネーデザインのサービス｜現状診断からツール選定、運用定着まで一気通貫で生成AI導入を支援します。">
-  <meta property="og:title" content="サービス｜マネーデザイン">
-  <meta property="og:description" content="現状診断・ロードマップ策定からツール選定・導入支援、運用定着・研修サポートまで、生成AI導入を一気通貫で支援します。">
+  <meta name="description" content="マネーデザインのサービス｜中小企業への生成AI導入支援。現状診断・ロードマップ策定からツール選定、運用定着・研修まで一気通貫でサポートします。">
+  <meta property="og:title"       content="サービス｜マネーデザイン">
+  <meta property="og:description" content="現状診断からツール選定、運用定着まで。中小企業専門の生成AI導入支援サービス。">
   <meta property="og:type"        content="website">
-  <meta property="og:url"        content="https://ai.moneydesign.co.jp/services.html">
-  <meta property="og:image"      content="https://ai.moneydesign.co.jp/images/ogp.png">
-  <meta property="og:site_name"  content="株式会社マネーデザイン">
-  <meta property="og:locale"     content="ja_JP">
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="サービス｜マネーデザイン">
-  <meta name="twitter:description" content="現状診断・ロードマップ策定からツール選定・導入支援、運用定着・研修サポートまで、生成AI導入を一気通貫で支援します。">
-  <meta name="twitter:image"       content="https://ai.moneydesign.co.jp/images/ogp.png">
-  <meta name="robots"              content="index, follow">
-  <link rel="canonical"            href="https://ai.moneydesign.co.jp/services.html">
+  <meta property="og:url"         content="https://ai.moneydesign.co.jp/services.html">
+  <meta property="og:image"       content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta property="og:site_name"   content="株式会社マネーデザイン">
+  <meta property="og:locale"      content="ja_JP">
   <title>サービス｜マネーデザイン</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 
-  <!-- ヘッダー -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="header__logo">
-        <span class="logo-mark">MD</span>
-        <span class="logo-text">マネーデザイン</span>
+        <img src="images/logo.png" alt="マネーデザインAI" class="header__logo-img">
       </a>
       <nav class="header__nav" id="globalNav">
         <ul class="nav__list">
-          <li><a href="services.html" style="color:var(--color-accent)">サービス</a></li>
+          <li><a href="index.html">Top</a></li>
+          <li><a href="services.html" style="color:var(--nav-active)">サービス</a></li>
           <li><a href="cases.html">導入事例</a></li>
           <li><a href="blog/index.html">ブログ</a></li>
           <li><a href="about.html">会社情報</a></li>
         </ul>
+        <div class="nav__cta">
+          <a href="contact.html" class="btn btn--primary">無料相談</a>
+        </div>
       </nav>
       <a href="contact.html" class="btn btn--primary header__cta">無料相談</a>
       <button class="hamburger" id="hamburger" aria-label="メニュー">
@@ -51,102 +50,298 @@
   <main>
 
     <!-- ページヒーロー -->
-    <section class="page-hero section--hero">
+    <section class="page-hero">
       <div class="container">
-        <p class="hero__eyebrow">Services</p>
-        <h1 class="page-hero__title">サービス</h1>
-        <p class="page-hero__desc">3つのステップで、AIを「使える組織」へ変革します</p>
+        <span class="page-hero__label">Services</span>
+        <h1 class="page-hero__title">
+          生成AI導入を、<br>3つのステップで完結させます
+        </h1>
+        <p class="page-hero__desc">
+          「何から始めればいいか」から「社員全員が使いこなせる」まで。<br>中小企業専門のコンサルタントが一気通貫でサポートします。
+        </p>
       </div>
     </section>
 
-    <!-- サービス詳細 S1 -->
-    <section class="section" id="s1">
+    <!-- よくある課題 -->
+    <section class="section section--alt">
       <div class="container">
-        <div class="service-detail">
-          <div class="service-detail__icon">🔍</div>
-          <div class="service-detail__body">
-            <h2 class="service-detail__title">現状診断・ロードマップ策定</h2>
-            <p class="service-detail__desc">
-              業務フロー全体をヒアリング・分析し、生成AIの活用優先領域を特定します。
-              経営目標と現場課題を照らし合わせた実行可能なロードマップを策定します。
-            </p>
-            <ul class="service-detail__list">
-              <li>業務フローヒアリング・ドキュメント化</li>
-              <li>AI活用ポテンシャル評価</li>
-              <li>優先領域マッピングと導入計画書の作成</li>
-            </ul>
+        <header class="section__header">
+          <span class="section__label">Common Challenges</span>
+          <h2 class="section__title">こんなお悩みありませんか？</h2>
+        </header>
+        <div class="challenges__grid">
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">01</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">何から始めればよいかわからない</h3>
+              <p class="challenge__text">AIツールは数多くあり、どれが自社に合うか判断できない。調べれば調べるほど混乱してしまう。</p>
+            </div>
+          </div>
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">02</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">社員がついてこれるか不安</h3>
+              <p class="challenge__text">ITが得意でないスタッフが多く、新しいツールを導入しても結局誰も使わないまま終わってしまいそう。</p>
+            </div>
+          </div>
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">03</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">コスト対効果が見えない</h3>
+              <p class="challenge__text">導入に費用をかけても、本当に業務が効率化されるのかイメージが湧かない。費用の根拠を示してほしい。</p>
+            </div>
+          </div>
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">04</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">情報漏洩・セキュリティが心配</h3>
+              <p class="challenge__text">顧客情報や社内データをAIに入力して大丈夫なのか、どのツールなら安全に使えるのかわからない。</p>
+            </div>
+          </div>
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">05</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">以前に導入したが定着しなかった</h3>
+              <p class="challenge__text">過去にITツールを導入したが、現場に浸透せず「入れただけ」で終わった経験がある。</p>
+            </div>
+          </div>
+          <div class="challenge__item fade-in">
+            <span class="challenge__num">06</span>
+            <div class="challenge__body">
+              <h3 class="challenge__title">社内に推進できる人材がいない</h3>
+              <p class="challenge__text">AI担当者を置く余裕がなく、外部の専門家に頼りたいが、どこに相談すべきかわからない。</p>
+            </div>
+          </div>
+        </div>
+        <p class="challenges__note">これらすべて、私たちが解決してきた課題です。まずはお気軽にご相談ください。</p>
+      </div>
+    </section>
+
+    <!-- 3ステップ概要 -->
+    <section class="section">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__label">Our Process</span>
+          <h2 class="section__title">支援の流れ</h2>
+          <p class="section__desc">初回相談から導入後の定着支援まで、すべてワンストップで対応します。</p>
+        </header>
+        <div class="process__steps">
+          <div class="process__step fade-in">
+            <span class="process__step-num">01</span>
+            <div class="process__step-body">
+              <h3 class="process__step-title">無料相談・ヒアリング</h3>
+              <p class="process__step-text">現状の業務課題や目標をお聞きします。AI導入の必要性・優先度を一緒に整理します。<br><span class="process__step-meta">所要時間：60分 / オンライン対応可</span></p>
+            </div>
+          </div>
+          <div class="process__step fade-in">
+            <span class="process__step-num">02</span>
+            <div class="process__step-body">
+              <h3 class="process__step-title">現状診断・提案書提出</h3>
+              <p class="process__step-text">業務フローを分析し、AI活用の優先領域と期待効果を明記した提案書をご提出します。<br><span class="process__step-meta">期間：1〜2週間</span></p>
+            </div>
+          </div>
+          <div class="process__step fade-in">
+            <span class="process__step-num">03</span>
+            <div class="process__step-body">
+              <h3 class="process__step-title">ツール選定・導入</h3>
+              <p class="process__step-text">貴社の要件に最適なAIツールを選定し、実際の業務フローへの組み込みを支援します。<br><span class="process__step-meta">期間：2〜4週間</span></p>
+            </div>
+          </div>
+          <div class="process__step fade-in">
+            <span class="process__step-num">04</span>
+            <div class="process__step-body">
+              <h3 class="process__step-title">研修・定着支援</h3>
+              <p class="process__step-text">現場スタッフへの操作研修を実施。月次レビューで改善を継続し、「使われる状態」を維持します。<br><span class="process__step-meta">期間：3〜6ヶ月（継続サポートプランあり）</span></p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- サービス詳細 S2 -->
-    <section class="section section--bg-gray" id="s2">
+    <!-- 01 現状診断・ロードマップ策定 -->
+    <section class="svc-section section--alt" id="s1">
       <div class="container">
-        <div class="service-detail service-detail--reverse">
-          <div class="service-detail__icon">⚙️</div>
-          <div class="service-detail__body">
-            <h2 class="service-detail__title">ツール選定・導入支援</h2>
-            <p class="service-detail__desc">
-              ChatGPT / Claude / Gemini など多様なAIツールの中から、
-              貴社の業務・予算・セキュリティ要件に最適なものを選定。
-              実際の業務フローへの組み込みまでワンストップで支援します。
+        <div class="svc-block fade-in">
+          <div class="svc-block__meta">
+            <span class="svc-block__num">01</span>
+          </div>
+          <div class="svc-block__content">
+            <h2 class="svc-block__title">現状診断・<br>ロードマップ策定</h2>
+            <p class="svc-block__desc">
+              「何に使えばいいかわからない」を解消するのが最初のステップです。
+              業務フロー全体をヒアリング・分析し、AI化によって最大の効果が見込める領域を特定。
+              経営課題と現場の実態を照らし合わせた、実行可能なロードマップを策定します。
             </p>
-            <ul class="service-detail__list">
-              <li>ツール比較・選定サポート</li>
-              <li>業務プロセスへの組み込み設計</li>
-              <li>初期セットアップと動作確認</li>
+            <ul class="svc-block__list">
+              <li>業務フロー全体のヒアリングとドキュメント化</li>
+              <li>AI活用ポテンシャル評価（部門別・業務別）</li>
+              <li>投資対効果（ROI）の試算</li>
+              <li>優先領域マッピングと6ヶ月導入計画書の作成</li>
+              <li>セキュリティ要件の整理とリスク評価</li>
             </ul>
+            <div class="svc-block__cta">
+              <a href="contact.html" class="btn btn--primary">まず診断から相談する</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- サービス詳細 S3 -->
-    <section class="section" id="s3">
+    <!-- 02 ツール選定・導入支援 -->
+    <section class="svc-section" id="s2">
       <div class="container">
-        <div class="service-detail">
-          <div class="service-detail__icon">📈</div>
-          <div class="service-detail__body">
-            <h2 class="service-detail__title">運用定着・研修サポート</h2>
-            <p class="service-detail__desc">
-              導入後も継続的な研修と改善サポートを提供し、
-              AI活用を組織に確実に定着させます。
-              現場スタッフの習熟度に合わせたカリキュラムで、全員が使いこなせる状態を目指します。
+        <div class="svc-block fade-in">
+          <div class="svc-block__meta">
+            <span class="svc-block__num">02</span>
+          </div>
+          <div class="svc-block__content">
+            <h2 class="svc-block__title">ツール選定・<br>導入支援</h2>
+            <p class="svc-block__desc">
+              ChatGPT / Claude / Gemini など、
+              急速に増え続けるAIツールの中から、貴社の業務内容・予算・セキュリティ基準に
+              最適なものをベンダー中立の立場で選定します。
+              「なんとなく流行りのツールを入れた」ではなく、
+              業務に根付いた選択ができるよう丁寧にサポートします。
             </p>
-            <ul class="service-detail__list">
-              <li>階層別・役割別研修プログラム</li>
-              <li>月次レビューと改善提案</li>
-              <li>活用状況モニタリングとレポート</li>
+            <ul class="svc-block__list">
+              <li>主要AIツールの比較・評価（ChatGPT / Claude / Gemini 等）</li>
+              <li>業務プロセスへの組み込み設計（プロンプト設計含む）</li>
+              <li>セキュリティ設定・社内ルール策定のサポート</li>
+              <li>初期セットアップ・動作確認・トラブル対応</li>
+              <li>既存業務システムとの連携検討</li>
             </ul>
+            <div class="svc-block__cta">
+              <a href="contact.html" class="btn btn--primary">ツール選定を相談する</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTAセクション -->
-    <section class="section section--cta">
+    <!-- 03 運用定着・研修サポート -->
+    <section class="svc-section section--alt" id="s3">
       <div class="container">
-        <h2 class="cta__title">まずは無料でご相談ください</h2>
-        <p class="cta__desc">導入の疑問・不安、お気軽にどうぞ。<br>60分の無料相談で、貴社に最適な活用方法をご提案します。</p>
-        <div class="cta__actions">
-          <a href="contact.html#consultation" class="btn btn--primary btn--lg">無料相談を予約する</a>
-          <a href="contact.html#document" class="btn btn--white btn--lg">資料請求する</a>
+        <div class="svc-block fade-in">
+          <div class="svc-block__meta">
+            <span class="svc-block__num">03</span>
+          </div>
+          <div class="svc-block__content">
+            <h2 class="svc-block__title">運用定着・<br>研修サポート</h2>
+            <p class="svc-block__desc">
+              ツールを入れて終わり、ではありません。
+              多くの企業でAI導入が失敗する最大の原因は「定着しないこと」です。
+              現場スタッフの習熟度・役割に合わせた研修プログラムで、
+              全員が自信を持って使いこなせる状態をつくります。
+              導入後3〜6ヶ月の伴走期間で確実に定着させます。
+            </p>
+            <ul class="svc-block__list">
+              <li>役割別・習熟度別の研修プログラム（管理職 / 現場スタッフ / 担当者）</li>
+              <li>実務に即したハンズオン形式のワークショップ</li>
+              <li>社内AI活用マニュアル・プロンプト集の作成</li>
+              <li>月次レビューと改善提案（KPI追跡）</li>
+              <li>AI活用状況のモニタリングレポート</li>
+            </ul>
+            <div class="svc-block__cta">
+              <a href="contact.html" class="btn btn--primary">研修内容を相談する</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- なぜ選ばれるのか -->
+    <section class="section">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__label">Why Choose Us</span>
+          <h2 class="section__title">マネーデザインが<br>選ばれる4つの理由</h2>
+        </header>
+        <div class="reasons__grid">
+          <div class="reason__item fade-in">
+            <span class="reason__num">01</span>
+            <h3 class="reason__title">中小企業専門</h3>
+            <p class="reason__text">大企業向けの高額コンサルとは異なり、従業員20〜100名規模の中小企業に特化。現場の実態を知るコンサルタントが担当します。</p>
+          </div>
+          <div class="reason__item fade-in">
+            <span class="reason__num">02</span>
+            <h3 class="reason__title">ベンダー中立</h3>
+            <p class="reason__text">特定のAIツールやベンダーと利害関係がありません。貴社の要件に最適なツールを中立の立場で選定・提案します。</p>
+          </div>
+          <div class="reason__item fade-in">
+            <span class="reason__num">03</span>
+            <h3 class="reason__title">現場密着型の支援</h3>
+            <p class="reason__text">リモートだけでなく、必要に応じて現場に出向きます。経営層から現場スタッフまで、全員を巻き込んだ定着を実現します。</p>
+          </div>
+          <div class="reason__item fade-in">
+            <span class="reason__num">04</span>
+            <h3 class="reason__title">導入後の伴走保証</h3>
+            <p class="reason__text">「入れて終わり」ではありません。3〜6ヶ月の伴走期間で、AIが実際に業務で使われている状態を確認するまでサポートします。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- よくある質問 -->
+    <section class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__label">FAQ</span>
+          <h2 class="section__title">よくある質問</h2>
+        </header>
+        <div class="faq__list">
+          <div class="faq__item fade-in">
+            <h3 class="faq__q">IT・AIについて知識がなくても大丈夫ですか？</h3>
+            <p class="faq__a">はい、大丈夫です。専門知識は一切不要です。「パソコンは使えるが、AIは初めて」という方を対象に支援してきた実績があります。難しい用語は使わず、業務の言葉でご説明します。</p>
+          </div>
+          <div class="faq__item fade-in">
+            <h3 class="faq__q">費用の目安を教えてください。</h3>
+            <p class="faq__a">現状診断パッケージは30万円〜、導入支援は50万円〜、定着支援（月次）は15万円〜を目安にご提案しています。規模・対象業務によって異なりますので、まずは無料相談でお気軽にご確認ください。</p>
+          </div>
+          <div class="faq__item fade-in">
+            <h3 class="faq__q">社内の情報をAIに入れても安全ですか？</h3>
+            <p class="faq__a">ツールの選定段階でセキュリティ要件を整理し、社内データが学習に使われない設定や、機密情報の取り扱いルールを一緒に策定します。安全に使えるルール作りまでサポートします。</p>
+          </div>
+          <div class="faq__item fade-in">
+            <h3 class="faq__q">どのくらいの期間で効果が出ますか？</h3>
+            <p class="faq__a">早い場合は導入後1ヶ月以内に業務時間の削減効果が出始めます。本格的な定着には3〜6ヶ月を目安にしており、月次レビューで進捗を可視化しながら進めます。</p>
+          </div>
+          <div class="faq__item fade-in">
+            <h3 class="faq__q">すでに自社でAIツールを使っていますが、支援してもらえますか？</h3>
+            <p class="faq__a">はい、もちろんです。「とりあえず使い始めたが、うまく活用できていない」という状態からの支援も得意としています。現状の使い方を診断し、より効果的な活用方法をご提案します。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section--cta">
+      <div class="container">
+        <div class="cta__inner">
+          <div class="cta__text-block">
+            <h2 class="cta__title">一緒に、整理しましょう。</h2>
+            <p class="cta__desc">
+              60分の無料相談で、貴社の課題と最適な活用方法をご提案します。<br>
+              費用・スケジュール・具体的な支援内容もその場でご説明します。
+            </p>
+          </div>
+          <div class="cta__actions">
+            <a href="contact.html#consultation" class="btn btn--primary btn--lg">無料相談を予約する</a>
+            <a href="contact.html#document" class="btn btn--ghost">資料請求する</a>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- フッター -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo">
           <span class="logo-mark">MD</span>
-          <span>マネーデザイン</span>
+          <span class="logo-text">マネーデザイン</span>
         </a>
-        <p class="footer__tagline">生成AI導入支援サービス</p>
+        <p class="footer__tagline">生成AI 導入支援</p>
         <p class="footer__desc">中小企業の現場に寄り添い、<br>生成AI導入から定着まで<br>一気通貫でサポートします。</p>
       </div>
       <div class="footer__col">
@@ -171,9 +366,9 @@
     </div>
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
-        <p>&copy; 2025 株式会社マネーデザイン. All rights reserved.</p>
+        <p>&copy; 2026 株式会社マネーデザイン. All rights reserved.</p>
         <nav class="footer__legal">
-          <a href="#">プライバシーポリシー</a>
+          <a href="privacy.html">プライバシーポリシー</a>
         </nav>
       </div>
     </div>
