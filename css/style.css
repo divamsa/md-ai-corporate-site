@@ -480,6 +480,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer .logo-text {
   color: #ffffff;
 }
+.footer__logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
 .footer__tagline {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
