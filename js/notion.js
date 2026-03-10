@@ -21,6 +21,17 @@ const _onBlogPage = location.pathname.includes('/blog/');
 const POSTS_JSON  = _onBlogPage ? 'posts.json' : 'blog/posts.json';
 
 /**
+ * HTMLエスケープ（XSS対策）
+ */
+function escHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/**
  * ブログ記事をDOMに描画する
  * @param {string} containerId - 描画先要素のID（デフォルト: 'blogGrid'）
  * @param {number} limit        - 表示件数（0 = 全件）
@@ -89,8 +100,8 @@ function postToItem(p, isListMode) {
     // ─── リスト行（トップページ用: editorial row） ───
     return `
       <a class="blog-list-item fade-in" href="${href}">
-        <span class="blog-list-item__category">${p.category || '—'}</span>
-        <span class="blog-list-item__title">${p.title}</span>
+        <span class="blog-list-item__category">${p.category ? escHtml(p.category) : '—'}</span>
+        <span class="blog-list-item__title">${escHtml(p.title)}</span>
         <time class="blog-list-item__date" datetime="${p.date}">${formattedDate}</time>
       </a>
     `.trim();
@@ -98,13 +109,13 @@ function postToItem(p, isListMode) {
 
   // ─── カード（ブログ一覧ページ用） ───
   return `
-    <article class="blog-card fade-in" data-category="${p.category || ''}">
+    <article class="blog-card fade-in" data-category="${escHtml(p.category || '')}">
       <div class="blog-card__body">
-        ${p.category ? `<span class="blog-card__category">${p.category}</span>` : ''}
+        ${p.category ? `<span class="blog-card__category">${escHtml(p.category)}</span>` : ''}
         <h3 class="blog-card__title">
-          <a href="${href}">${p.title}</a>
+          <a href="${href}">${escHtml(p.title)}</a>
         </h3>
-        ${p.excerpt ? `<p class="blog-card__excerpt">${p.excerpt}</p>` : ''}
+        ${p.excerpt ? `<p class="blog-card__excerpt">${escHtml(p.excerpt)}</p>` : ''}
         <time class="blog-card__date" datetime="${p.date}">${formattedDate}</time>
       </div>
     </article>

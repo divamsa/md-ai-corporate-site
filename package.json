@@ -1,0 +1,14 @@
+{
+  "name": "md-ai-corporate-site",
+  "version": "1.0.0",
+  "description": "マネーデザイン 生成AI導入支援 コーポレートサイト",
+  "private": true,
+  "scripts": {
+    "fetch-blog": "node scripts/fetch-blog.js",
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -30,10 +30,16 @@ if (hamburger && globalNav) {
     globalNav.appendChild(mobileCta);
   }
 
-  // オーバーレイ生成
-  const overlay = document.createElement('div');
-  overlay.className = 'nav-overlay';
-  document.body.appendChild(overlay);
+  // HTMLに既存のオーバーレイ要素を再利用（二重生成防止）
+  const overlay = document.getElementById('navOverlay')
+    || (() => {
+      // フォールバック: 要素がない場合のみ生成
+      const el = document.createElement('div');
+      el.id = 'navOverlay';
+      el.className = 'nav-overlay';
+      document.body.appendChild(el);
+      return el;
+    })();
 
   function openMenu() {
     hamburger.classList.add('active');
