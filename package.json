@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "マネーデザイン 生成AI導入支援 コーポレートサイト",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "fetch-blog": "node scripts/fetch-blog.js",
     "dev": "npx serve . -l 3000",
-    "start": "npx serve . -l 3000"
-  },
-  "engines": {
-    "node": ">=18"
+    "start": "npx serve . -l 3000",
+    "deploy": "bash scripts/deploy-ftp.sh"
   }
 }
