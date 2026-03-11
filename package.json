@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "マネーデザイン 生成AI導入支援 コーポレートサイト",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "npx serve . -l 3000",
     "start": "npx serve . -l 3000",
     "build": "echo \"Static site - no build step required\"",
     "lint": "echo \"Lint skipped - static HTML site\"",
     "test": "echo \"No tests configured\"",
-    "fetch-blog": "node scripts/fetch-blog.js"
-  },
-  "engines": {
-    "node": ">=18"
+    "fetch-blog": "node scripts/fetch-blog.js",
+    "deploy": "bash scripts/deploy-ftp.sh"
   }
 }
