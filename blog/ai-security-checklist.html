@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI導入でセキュリティリスクを防ぐための10問チェックシート。中小企業が今すぐ点検できる具体的な診断項目と対策を解説します。">
+  <meta property="og:title" content="【10問で診断】AI導入前に必ずチェックすべきセキュリティ診断シート｜マネーデザイン">
+  <meta property="og:description" content="AI導入でセキュリティリスクを防ぐための10問チェックシート。中小企業が今すぐ点検できる具体的な診断項目と対策を解説します。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ai.moneydesign.co.jp/blog/ai-security-checklist.html">
+  <meta property="og:image" content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta property="og:site_name" content="株式会社マネーデザイン">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="【10問で診断】AI導入前に必ずチェックすべきセキュリティ診断シート">
+  <meta name="twitter:description" content="AI導入でセキュリティリスクを防ぐための10問チェックシート。中小企業が今すぐ点検できる具体的な診断項目と対策を解説します。">
+  <meta name="twitter:image" content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ai.moneydesign.co.jp/blog/ai-security-checklist.html">
+  <title>【10問で診断】AI導入前に必ずチェックすべきセキュリティ診断シート｜マネーデザイン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    /* 記事ページ固有スタイル */
+    .article-header {
+      padding: var(--sp-12) 0 var(--sp-6);
+      border-bottom: 1px solid var(--border);
+    }
+    .article-header__meta {
+      display: flex;
+      gap: var(--sp-3);
+      align-items: center;
+      margin-bottom: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .article-header__date {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+    }
+    .article-header__category {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      padding: 4px 12px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .article-header__title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--sp-8) 0 var(--sp-16);
+    }
+    .article-body p {
+      margin-bottom: 1.5rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .article-body h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 3rem 0 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-strong);
+      line-height: 1.4;
+    }
+    .article-body h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.5rem 0 1rem;
+      line-height: 1.5;
+    }
+    .article-body ul {
+      margin: 0 0 1.5rem 1.75rem;
+      line-height: 1.9;
+    }
+    .article-body li {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .article-body strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .article-body blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      background: var(--bg-surface);
+      margin: 2rem 0;
+      color: var(--text-sub);
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    /* チェックシート固有スタイル */
+    .checklist-box {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-strong);
+      padding: var(--sp-6) var(--sp-5);
+      margin: var(--sp-8) 0;
+      border-radius: 8px;
+    }
+    .checklist-box__title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-5);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+    .checklist-item input[type="checkbox"] {
+      margin-top: 0.3rem;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checklist-item label {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .checklist-item label strong {
+      font-weight: 600;
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    .checklist-item label span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-top: 0.3rem;
+      line-height: 1.6;
+    }
+    .checklist-result {
+      margin-top: var(--sp-5);
+      padding: var(--sp-4) var(--sp-5);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .checklist-result__label {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .checklist-result__bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+    .checklist-result__fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    .checklist-result__desc {
+      color: var(--text-sub);
+      line-height: 1.8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logo.png" alt="マネーデザインAI" class="header__logo-img">
+      </a>
+      <nav class="header__nav" id="globalNav">
+        <ul class="nav__list">
+          <li><a href="../index.html">Top</a></li>
+          <li><a href="../services.html">サービス</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html" style="color:var(--nav-active)">ブログ</a></li>
+          <li><a href="../about.html">会社情報</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="../contact.html" class="btn btn--primary">無料相談</a>
+        </div>
+      </nav>
+      <a href="../contact.html" class="btn btn--primary header__cta">無料相談</a>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-header__meta">
+            <time class="article-header__date" datetime="2026-04-16">2026.04.16</time>
+            <span class="article-header__category">導入Tips</span>
+          </div>
+          <h1 class="article-header__title">【10問で診断】AI導入前に必ずチェックすべきセキュリティ診断シート</h1>
+        </div>
+      </header>
+
+      <div class="article-body">
+        <div class="container">
+
+<p>「うちはChatGPTをもう使っているよ」と言いながら、社内の顧客情報をそのまま貼り付けて使っている担当者がいる会社を、複数見ています。悪意があるわけではありません。便利なのでつい使ってしまう。でも、そのデータがどこへ行くのかを考えたことはありますか。</p>
+
+<p>AI導入の相談でよく受ける質問が「セキュリティって大丈夫なんですか？」です。正直に言うと、「設定次第で大丈夫になる」が答えで、何もしなければ大丈夫ではない可能性があります。今回は、その「設定次第」の部分を自社で点検できるチェックシートをまとめました。</p>
+
+<h2>なぜAI導入でセキュリティリスクが生まれるのか</h2>
+
+<p>生成AIツールの多くは、初期設定のままだと入力したデータがAI企業のサーバーに送信されます。ChatGPTの場合、設定を変更しなければ会話内容がOpenAIのサービス改善に使われる可能性があります。これは利用規約に書いてありますが、読んでいる人はほとんどいません。</p>
+
+<p>問題は、そのことを知らずに使っている社員が多い点です。「営業担当が顧客の氏名・連絡先・商談内容をまとめてChatGPTに整理させていた」というケースは珍しくありません。意図的な情報漏洩ではなく、利便性を追求した結果として起きています。</p>
+
+<p>もう一つのリスクは、社内でどのツールが使われているかを経営層が把握していないことです。個人のクレジットカードで有料プランに加入し、業務データを処理している社員が複数いるという会社もあります。いわゆる「シャドーIT」の問題です。</p>
+
+<h2>まず現状を把握する：10問のセキュリティ診断</h2>
+
+<p>難しい技術知識は不要です。「○か×か」で答えられる10の問いに答えるだけで、自社のAIセキュリティの現状が見えてきます。</p>
+
+<div class="checklist-box" id="securityChecklist">
+  <div class="checklist-box__title">
+    ✓ AI導入セキュリティ診断チェックシート（全10問）
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q1" onchange="updateScore()">
+    <label for="q1">
+      <strong>Q1</strong>社員がどのAIツールを使っているか、会社として把握している
+      <span>個人利用・業務利用を含め、社内で使われているツールを一覧化できている状態</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q2" onchange="updateScore()">
+    <label for="q2">
+      <strong>Q2</strong>AIツールの利用規約（特にデータの取り扱い条項）を確認したことがある
+      <span>OpenAI・Anthropic・Googleなど、使用ツールのプライバシーポリシーを少なくとも一度は読んでいる</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q3" onchange="updateScore()">
+    <label for="q3">
+      <strong>Q3</strong>入力データが学習・改善に使われない設定（オプトアウト）を確認・設定している
+      <span>ChatGPTであれば「チャット履歴とトレーニング」のオフ設定など、ツールごとに確認が必要</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q4" onchange="updateScore()">
+    <label for="q4">
+      <strong>Q4</strong>顧客の個人情報・社外秘情報をAIに入力しないルールがある
+      <span>「入力してよいデータ／してはいけないデータ」の区分が、文書でも口頭でも社員に伝わっている</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q5" onchange="updateScore()">
+    <label for="q5">
+      <strong>Q5</strong>AIツールのアカウントは会社のメールアドレスで管理している
+      <span>個人のGoogleアカウント・私用メールでの利用ではなく、業務用アカウントに紐づいている</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q6" onchange="updateScore()">
+    <label for="q6">
+      <strong>Q6</strong>AIが生成した内容を、確認せずそのまま外部公開していない
+      <span>メール・SNS・提案書などに使う前に、人間が内容・事実・トーンを必ず確認するフローがある</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q7" onchange="updateScore()">
+    <label for="q7">
+      <strong>Q7</strong>パスワード・APIキー・社内システムの認証情報をAIに入力したことがない
+      <span>「ログインできない」などのトラブル対応でも、認証情報を貼り付けないことが徹底されている</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q8" onchange="updateScore()">
+    <label for="q8">
+      <strong>Q8</strong>AI利用に関する社内ルール（利用ガイドライン）が文書化されている
+      <span>口頭の申し合わせではなく、書面・社内wikiなど参照できる形で整備されている</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q9" onchange="updateScore()">
+    <label for="q9">
+      <strong>Q9</strong>AI関連のインシデント（情報漏洩・誤出力など）が起きた場合の対応フローがある
+      <span>誰に報告し、どう対処するか。最低限の手順が決まっている</span>
+    </label>
+  </div>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="q10" onchange="updateScore()">
+    <label for="q10">
+      <strong>Q10</strong>業務でAIを使う前に、社員向けの説明・研修を実施している
+      <span>「なんとなく使い始めた」ではなく、リスクと正しい使い方の説明が一度でも行われている</span>
+    </label>
+  </div>
+
+  <div class="checklist-result" id="checklistResult">
+    <div class="checklist-result__label" id="resultLabel">チェックした数：0 / 10</div>
+    <div class="checklist-result__bar">
+      <div class="checklist-result__fill" id="resultFill" style="width:0%"></div>
+    </div>
+    <div class="checklist-result__desc" id="resultDesc">
+      各項目にチェックを入れると、現状の診断結果が表示されます。
+    </div>
+  </div>
+</div>
+
+<h2>結果の読み方</h2>
+
+<p><strong>8〜10点：</strong>基本的な対策はできています。次のステップとして、「AI利用ポリシーの定期見直し」と「業務別のリスク評価」に進むことをおすすめします。</p>
+
+<p><strong>5〜7点：</strong>一部は対策されていますが、穴があります。特に「✓が入っていない項目」が実際のリスクポイントです。優先度の高いものから一つずつ対処しましょう。</p>
+
+<p><strong>4点以下：</strong>現時点では、意図せずデータが外部に渡るリスクがあります。AIを便利に使っている分だけリスクも積み重なっているかもしれません。まず「Q3のオプトアウト設定」と「Q4のルール整備」から始めてください。</p>
+
+<h2>「大企業の話でしょ」と思っていませんか</h2>
+
+<p>情報セキュリティ事故の件数を見ると、従業員100人以下の中小企業で起きているケースが全体の半数近くを占めています（出典：IPAセキュリティ白書）。大企業はセキュリティ担当者がいてシステムで防ぎますが、中小企業には専任担当者がいない。だから「ルール」と「意識」で補うしかありません。</p>
+
+<p>AIの導入を進めれば進めるほど、セキュリティのリスクも広がります。最初に少し時間をかけて点検しておくことが、後から大きなコストをかけて対処することを防ぎます。</p>
+
+<h2>まとめ：先手を打った会社が信頼を得る</h2>
+
+<p>AI導入を進める中小企業が取引先から聞かれることが増えています。「御社はAIのセキュリティ対策をどうされていますか？」という質問です。ここでしっかり答えられる会社は、信頼という意味で大きなアドバンテージを持ちます。</p>
+
+<p>このチェックシートを参考に、まず現状を把握してみてください。「うちは何点だろう」と確認するだけで、次にやるべきことが見えてきます。点検の進め方や社内ルールの整備に迷ったときは、無料相談で一緒に整理します。</p>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <section class="section--cta">
+      <div class="container">
+        <div class="cta__inner">
+          <div class="cta__text-block">
+            <h2 class="cta__title">セキュリティ対策、一緒に整理しませんか。</h2>
+            <p class="cta__desc">
+              無料相談で、貴社の現状に合った対策をご提案します。<br>
+              チェックシートの結果をお持ちいただければ、より具体的なアドバイスが可能です。
+            </p>
+          </div>
+          <div class="cta__actions">
+            <a href="../contact.html#consultation" class="btn btn--primary btn--lg">無料相談を予約する</a>
+            <a href="../contact.html#document" class="btn btn--ghost">資料請求する</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../images/logo.png" alt="マネーデザインAI" class="footer__logo-img">
+        </a>
+        <p class="footer__tagline">生成AI 導入支援</p>
+        <p class="footer__desc">中小企業の現場に寄り添い、<br>生成AI導入から定着まで<br>一気通貫でサポートします。</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Services</p>
+        <ul>
+          <li><a href="../services.html#s1">現状診断・ロードマップ策定</a></li>
+          <li><a href="../services.html#s2">ツール選定・導入支援</a></li>
+          <li><a href="../services.html#s3">運用定着・研修サポート</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html">ブログ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Company</p>
+        <ul>
+          <li><a href="../about.html">会社情報</a></li>
+          <li><a href="../contact.html">お問い合わせ</a></li>
+          <li><a href="../contact.html#consultation">無料相談</a></li>
+          <li><a href="../contact.html#document">資料請求</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; 2026 株式会社マネーデザイン. All rights reserved.</p>
+        <nav class="footer__legal">
+          <a href="../privacy.html">プライバシーポリシー</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    function updateScore() {
+      const checkboxes = document.querySelectorAll('#securityChecklist input[type="checkbox"]');
+      let count = 0;
+      checkboxes.forEach(cb => { if (cb.checked) count++; });
+      const pct = count * 10;
+      document.getElementById('resultLabel').textContent = 'チェックした数：' + count + ' / 10';
+      document.getElementById('resultFill').style.width = pct + '%';
+
+      let desc = '';
+      if (count >= 8) {
+        desc = '基本的な対策はできています。次のステップとして、AI利用ポリシーの定期見直しと業務別リスク評価を検討してください。';
+      } else if (count >= 5) {
+        desc = '一部対策されていますが、チェックが入っていない項目に具体的なリスクがあります。優先度の高いものから一つずつ対処しましょう。';
+      } else if (count >= 1) {
+        desc = '現時点では意図せずデータが外部に渡るリスクがあります。まず「Q3のデータ学習オフ設定」と「Q4のルール整備」から始めることをおすすめします。';
+      } else {
+        desc = '各項目にチェックを入れると、現状の診断結果が表示されます。';
+      }
+      document.getElementById('resultDesc').textContent = desc;
+    }
+  </script>
+</body>
+</html>
