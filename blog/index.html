@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="マネーデザイン公式ブログ。生成AI活用事例・導入Tips・最新トレンドを発信します。">
+  <title>ブログ｜マネーデザイン 生成AI導入支援</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="header__logo">
+        <span class="logo-mark">MD</span>
+        <span class="logo-text">マネーデザイン</span>
+      </a>
+      <nav class="header__nav" id="globalNav">
+        <ul class="nav__list">
+          <li><a href="../services.html">サービス</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html" style="color: var(--color-accent)">ブログ</a></li>
+          <li><a href="../about.html">会社情報</a></li>
+        </ul>
+      </nav>
+      <a href="../contact.html" class="btn btn--primary header__cta">無料相談</a>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section__title">ブログ</h1>
+        <p class="section__desc">生成AI活用事例・導入Tips・最新トレンドを発信します</p>
+
+        <!-- カテゴリフィルター (T-404) -->
+        <div class="blog-filter" id="blogFilter">
+          <button class="filter-btn active" data-category="all">すべて</button>
+          <button class="filter-btn" data-category="活用事例">活用事例</button>
+          <button class="filter-btn" data-category="AI基礎">AI基礎</button>
+          <button class="filter-btn" data-category="導入Tips">導入Tips</button>
+        </div>
+
+        <!-- 記事一覧 (T-402) -->
+        <div class="blog__grid" id="blogGrid">
+          <p class="loading">記事を読み込み中...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">マネーデザイン</a>
+        <p class="footer__tagline">生成AI導入支援サービス</p>
+      </div>
+      <nav class="footer__nav">
+        <ul>
+          <li><a href="../services.html">サービス</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html">ブログ</a></li>
+          <li><a href="../about.html">会社情報</a></li>
+          <li><a href="../contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 株式会社マネーデザイン. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/notion.js"></script>
+  <style>
+    /* ブログページ固有スタイル */
+    .blog-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    .filter-btn {
+      padding: 6px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--color-border);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text-sub);
+      cursor: pointer;
+      transition: all var(--transition);
+      background: white;
+      font-family: var(--font-ja);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: white;
+    }
+  </style>
+  <script>
+    // カテゴリフィルター (T-404)
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+        document.querySelectorAll('.blog-card').forEach(card => {
+          const cardCat = card.querySelector('.blog-card__category')?.textContent ?? '';
+          card.style.display = (category === 'all' || cardCat === category) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

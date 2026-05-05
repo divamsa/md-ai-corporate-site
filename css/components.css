@@ -1,0 +1,219 @@
+/* ==========================================
+   components.css - 共通コンポーネント
+   ========================================== */
+
+/* --- ボタン --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  font-family: var(--font-ja);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary {
+  background: var(--color-accent);
+  color: white;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+}
+.btn--primary:hover {
+  background: #2563EB;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+.btn--outline:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn--white {
+  background: white;
+  color: var(--color-primary);
+  border: 2px solid white;
+}
+.btn--white:hover {
+  background: transparent;
+  color: white;
+}
+
+.btn--lg {
+  padding: 1rem 2.25rem;
+  font-size: 1rem;
+}
+
+/* --- サービスカード (T-202) --- */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.service-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.service-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+.service-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.4;
+}
+.service-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-sm);
+  line-height: 1.8;
+}
+.service-card__link {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  transition: gap var(--transition);
+}
+.service-card__link:hover { text-decoration: underline; }
+
+/* --- 事例カード (T-204) --- */
+.cases__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.case-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.case-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.case-card__industry {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin-bottom: var(--space-xs);
+}
+.case-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+.case-card__result {
+  font-size: 0.875rem;
+  color: var(--color-text-sub);
+}
+.case-card__result strong {
+  color: var(--color-highlight);
+  font-size: 1.1rem;
+}
+
+/* --- ブログカード (T-402) --- */
+.blog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.blog-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+  background: white;
+}
+.blog-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+.blog-card__thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--color-bg-gray);
+  object-fit: cover;
+}
+.blog-card__body {
+  padding: var(--space-sm);
+}
+.blog-card__category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+.blog-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-xs);
+}
+.blog-card__date {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+}
+
+/* --- ローディング --- */
+.loading {
+  text-align: center;
+  color: var(--color-text-sub);
+  padding: var(--space-lg);
+  font-size: 0.9rem;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 1024px) {
+  .services__grid,
+  .cases__grid,
+  .blog__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services__grid,
+  .cases__grid,
+  .blog__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__actions,
+  .cta__actions {
+    flex-direction: column;
+  }
+  .btn--lg { width: 100%; justify-content: center; }
+}
