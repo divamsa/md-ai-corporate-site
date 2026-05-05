@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI導入セキュリティ診断チェックシート｜中小企業向け10問の無料診断。ChatGPTなどの生成AIを業務で使うときのリスクを自社で点検できます。">
+  <meta property="og:title"       content="AI導入セキュリティ診断チェックシート｜マネーデザイン">
+  <meta property="og:description" content="10問に答えるだけで、自社のAI利用のリスクが把握できます。中小企業向け無料診断ツール。">
+  <meta property="og:type"        content="article">
+  <meta property="og:image"       content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta property="og:site_name"   content="株式会社マネーデザイン">
+  <meta property="og:locale"      content="ja_JP">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="robots"             content="index, follow">
+  <link rel="canonical"           href="https://ai.moneydesign.co.jp/blog/security-check.html">
+  <title>AI導入セキュリティ診断チェックシート｜マネーデザイン</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <style>
+    /* ── ページ固有スタイル ── */
+    .check-hero {
+      background: var(--bg-surface);
+      padding: var(--sp-6) 0 var(--sp-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .check-hero__label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .check-hero__title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .check-hero__desc {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* ── レイアウト ── */
+    .check-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: var(--sp-8);
+      align-items: start;
+      padding: var(--sp-8) 0;
+    }
+    @media (max-width: 768px) {
+      .check-layout { grid-template-columns: 1fr; padding: 2rem 0; }
+      .check-sidebar { position: static !important; }
+    }
+
+    /* ── 本文エリア ── */
+    .check-body {
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .check-body h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-strong, #c8c8be);
+    }
+    .check-body p { margin-bottom: 1.25rem; }
+
+    /* ── チェックシート本体 ── */
+    .checklist {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong, #c8c8be);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .checklist__head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .checklist__item:last-of-type { border-bottom: none; }
+    .checklist__item:hover { background: rgba(42,92,69,0.03); }
+
+    .checklist__cb {
+      margin-top: 0.3rem;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checklist__label {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .checklist__label .q-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(42,92,69,0.08);
+      padding: 0.1em 0.5em;
+      border-radius: 3px;
+      margin-right: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+    .checklist__label .q-note {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-top: 0.2rem;
+      line-height: 1.6;
+    }
+
+    /* ── スコアパネル ── */
+    .score-panel {
+      margin-top: 1.75rem;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .score-panel__row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .score-panel__count {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .score-panel__of {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-left: 0.25rem;
+    }
+    .score-panel__label {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+    .score-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .score-bar__fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+    .score-result {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg-surface);
+      padding: 0.9rem 1rem;
+      border-left: 3px solid var(--accent);
+    }
+    .score-result .result-rank {
+      font-weight: 500;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.92rem;
+    }
+
+    /* ── 結果の解説 ── */
+    .result-guide {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .result-guide__item {
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-surface);
+      border-left: 3px solid var(--border-strong, #c8c8be);
+    }
+    .result-guide__item.rank-a { border-color: var(--accent); }
+    .result-guide__item.rank-b { border-color: #b5883e; }
+    .result-guide__item.rank-c { border-color: #b54040; }
+    .result-guide__score {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-sub);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.06em;
+    }
+    .result-guide__title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .result-guide__desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+    }
+
+    /* ── サイドバー ── */
+    .check-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+    .sidebar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: var(--sp-4);
+      margin-bottom: var(--sp-4);
+    }
+    .sidebar-card__title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.875rem;
+      color: var(--text);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.15s;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+    }
+    .share-btn:hover { background: var(--bg-surface); }
+
+    /* ── パンくず ── */
+    .breadcrumb-bar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb-bar__inner {
+      padding: 0.6rem 0;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+    .breadcrumb-bar__inner a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    .breadcrumb-bar__inner a:hover { color: var(--text); }
+    .breadcrumb-bar__sep { margin: 0 0.4rem; }
+
+    /* ── 印刷 ── */
+    @media print {
+      .header, .check-sidebar, .section--cta, .footer { display: none; }
+      .check-layout { grid-template-columns: 1fr; }
+      .checklist__item { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ヘッダー -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logo.png" alt="マネーデザインAI" class="header__logo-img">
+      </a>
+      <nav class="header__nav" id="globalNav">
+        <ul class="nav__list">
+          <li><a href="../index.html">Top</a></li>
+          <li><a href="../services.html">サービス</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html" style="color:var(--nav-active)">ブログ</a></li>
+          <li><a href="../about.html">会社情報</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="../contact.html" class="btn btn--primary">無料相談</a>
+        </div>
+      </nav>
+      <a href="../contact.html" class="btn btn--primary header__cta">無料相談</a>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- パンくず -->
+  <nav class="breadcrumb-bar" aria-label="パンくず">
+    <div class="container breadcrumb-bar__inner">
+      <a href="../index.html">ホーム</a>
+      <span class="breadcrumb-bar__sep">›</span>
+      <a href="index.html">ブログ</a>
+      <span class="breadcrumb-bar__sep">›</span>
+      <span>AI導入セキュリティ診断</span>
+    </div>
+  </nav>
+
+  <!-- ページヒーロー -->
+  <div class="check-hero">
+    <div class="container">
+      <span class="check-hero__label">Security Check</span>
+      <h1 class="check-hero__title">AI導入セキュリティ診断<br>チェックシート</h1>
+      <p class="check-hero__desc">
+        10問に答えるだけで、自社のAI利用リスクが把握できます。<br>
+        難しい技術知識は不要。各項目にチェックを入れてください。
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="check-layout">
+
+          <!-- メインコンテンツ -->
+          <div class="check-body">
+
+            <p>ChatGPTを業務で使っている会社の多くは、「どんなデータをAIに渡しているか」を会社として把握していません。意図的な情報漏洩ではなく、便利さを追求した結果として起きています。このチェックシートで、まず現状を把握してください。</p>
+
+            <!-- ▼ チェックシート本体 ▼ -->
+            <div class="checklist" id="checklist">
+              <div class="checklist__head">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                AI導入セキュリティ診断（全10問）
+              </div>
+
+              <!-- Q1 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q1" onchange="updateScore()">
+                <label class="checklist__label" for="q1">
+                  <span class="q-num">Q1</span>社員がどのAIツールを使っているか、会社として把握している
+                  <span class="q-note">個人利用・業務利用を含め、使われているツールを一覧化できている状態</span>
+                </label>
+              </div>
+
+              <!-- Q2 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q2" onchange="updateScore()">
+                <label class="checklist__label" for="q2">
+                  <span class="q-num">Q2</span>AIツールの利用規約（特にデータの取り扱い条項）を確認したことがある
+                  <span class="q-note">OpenAI・Anthropic・Googleなど、使用ツールのプライバシーポリシーを少なくとも一度は読んでいる</span>
+                </label>
+              </div>
+
+              <!-- Q3 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q3" onchange="updateScore()">
+                <label class="checklist__label" for="q3">
+                  <span class="q-num">Q3</span>入力データが学習・改善に使われない設定（オプトアウト）を確認・設定している
+                  <span class="q-note">ChatGPTであれば「チャット履歴とトレーニング」のオフ設定など、ツールごとに確認が必要</span>
+                </label>
+              </div>
+
+              <!-- Q4 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q4" onchange="updateScore()">
+                <label class="checklist__label" for="q4">
+                  <span class="q-num">Q4</span>顧客の個人情報・社外秘情報をAIに入力しないルールがある
+                  <span class="q-note">「入力してよいデータ／してはいけないデータ」の区分が、文書でも口頭でも社員に伝わっている</span>
+                </label>
+              </div>
+
+              <!-- Q5 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q5" onchange="updateScore()">
+                <label class="checklist__label" for="q5">
+                  <span class="q-num">Q5</span>AIツールのアカウントは会社のメールアドレスで管理している
+                  <span class="q-note">個人のGoogleアカウント・私用メールでの利用ではなく、業務用アカウントに紐づいている</span>
+                </label>
+              </div>
+
+              <!-- Q6 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q6" onchange="updateScore()">
+                <label class="checklist__label" for="q6">
+                  <span class="q-num">Q6</span>AIが生成した内容を、確認せずそのまま外部公開していない
+                  <span class="q-note">メール・SNS・提案書などに使う前に、人間が内容・事実・トーンを必ず確認するフローがある</span>
+                </label>
+              </div>
+
+              <!-- Q7 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q7" onchange="updateScore()">
+                <label class="checklist__label" for="q7">
+                  <span class="q-num">Q7</span>パスワード・APIキー・社内システムの認証情報をAIに入力したことがない
+                  <span class="q-note">「ログインできない」などのトラブル対応でも、認証情報を貼り付けないことが徹底されている</span>
+                </label>
+              </div>
+
+              <!-- Q8 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q8" onchange="updateScore()">
+                <label class="checklist__label" for="q8">
+                  <span class="q-num">Q8</span>AI利用に関する社内ルール（利用ガイドライン）が文書化されている
+                  <span class="q-note">口頭の申し合わせではなく、書面・社内wikiなど参照できる形で整備されている</span>
+                </label>
+              </div>
+
+              <!-- Q9 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q9" onchange="updateScore()">
+                <label class="checklist__label" for="q9">
+                  <span class="q-num">Q9</span>AI関連のインシデント（情報漏洩・誤出力など）が起きた場合の対応フローがある
+                  <span class="q-note">誰に報告し、どう対処するか。最低限の手順が決まっている</span>
+                </label>
+              </div>
+
+              <!-- Q10 -->
+              <div class="checklist__item">
+                <input type="checkbox" class="checklist__cb" id="q10" onchange="updateScore()">
+                <label class="checklist__label" for="q10">
+                  <span class="q-num">Q10</span>業務でAIを使う前に、社員向けの説明・研修を実施している
+                  <span class="q-note">「なんとなく使い始めた」ではなく、リスクと正しい使い方の説明が一度でも行われている</span>
+                </label>
+              </div>
+
+              <!-- スコアパネル -->
+              <div class="score-panel" id="scorePanel">
+                <div class="score-panel__row">
+                  <div>
+                    <span class="score-panel__count" id="scoreNum">0</span>
+                    <span class="score-panel__of">/ 10 点</span>
+                  </div>
+                  <span class="score-panel__label" id="scoreLabel">診断を開始してください</span>
+                </div>
+                <div class="score-bar">
+                  <div class="score-bar__fill" id="scoreBarFill"></div>
+                </div>
+                <div class="score-result" id="scoreResult">
+                  各項目にチェックを入れると、診断結果と対応方針が表示されます。
+                </div>
+              </div>
+            </div>
+            <!-- ▲ チェックシート本体 ▲ -->
+
+            <h2>スコア別の対応方針</h2>
+
+            <div class="result-guide">
+              <div class="result-guide__item rank-a">
+                <div class="result-guide__score">8〜10 点</div>
+                <div class="result-guide__title">基本対策は整っています</div>
+                <div class="result-guide__desc">次のステップとして、AI利用ポリシーの定期見直し（年1回）と業務別のリスク評価を検討してください。特に新しいAIツールを追加導入するたびに、同じ視点で再点検する習慣をつけると安心です。</div>
+              </div>
+              <div class="result-guide__item rank-b">
+                <div class="result-guide__score">5〜7 点</div>
+                <div class="result-guide__title">部分的なリスクが残っています</div>
+                <div class="result-guide__desc">チェックが入らなかった項目が実際のリスクポイントです。すべてを一度に対処しようとせず、「最も漏洩リスクが高い項目」から順番に一つずつ対処しましょう。Q3のオプトアウト設定とQ4のルール整備が優先度高です。</div>
+              </div>
+              <div class="result-guide__item rank-c">
+                <div class="result-guide__score">4 点以下</div>
+                <div class="result-guide__title">早急な対処が必要です</div>
+                <div class="result-guide__desc">現時点では、意図せずデータが外部に渡るリスクがある状態です。AIを便利に使っている分だけ、リスクも積み重なっている可能性があります。まず「Q3：データ学習のオフ設定」と「Q4：社内利用ルールの整備」から始めてください。一人でやるより、専門家と一緒に整理する方が早く確実です。</div>
+              </div>
+            </div>
+
+            <h2>中小企業こそ「ルール」で守る</h2>
+
+            <p>情報セキュリティ事故の発生件数を見ると、従業員100名以下の中小企業で起きているケースが全体の半数近くを占めています（出典：IPA情報セキュリティ白書）。大企業はセキュリティ担当者がいてシステムで防ぎますが、中小企業には専任担当者がいない。だから「ルール」と「意識」で補うしかありません。</p>
+
+            <p>AIの活用を広げれば広げるほど、リスクも広がります。最初に少し時間をかけて点検しておくことが、後から大きなコストをかけて対処することを防ぎます。このチェックシートを、社内共有の入り口として使ってください。</p>
+
+            <!-- 戻るリンク -->
+            <p style="margin-top:2.5rem;">
+              <a href="post.html?id=ai-security-checklist-sme" style="color:var(--text-sub);font-size:0.9rem;text-decoration:none;">← 関連記事「ChatGPTにそのデータ、本当に入れて大丈夫ですか？」を読む</a>
+            </p>
+
+          </div><!-- /.check-body -->
+
+          <!-- サイドバー -->
+          <aside class="check-sidebar">
+            <div class="sidebar-card">
+              <p class="sidebar-card__title">Share</p>
+              <a class="share-btn" id="copyBtn" href="#" onclick="copyUrl(event)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                URLをコピー
+              </a>
+              <a class="share-btn" href="https://twitter.com/intent/tweet?text=AI導入セキュリティ診断チェックシート｜10問で自社リスクを点検&url=https://ai.moneydesign.co.jp/blog/security-check.html" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.5 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                X（Twitter）でシェア
+              </a>
+            </div>
+
+            <div class="sidebar-card">
+              <p class="sidebar-card__title">このチェックで不安を感じたら</p>
+              <p style="font-size:0.88rem;color:var(--text-sub);line-height:1.75;margin-bottom:1rem;">点検結果をもとに、社内ルール整備・ツール設定・研修設計までまとめて対応します。まずは無料相談で現状を聞かせてください。</p>
+              <a href="../contact.html" class="btn btn--primary" style="width:100%;justify-content:center;display:flex;">無料相談はこちら</a>
+            </div>
+
+            <div class="sidebar-card">
+              <p class="sidebar-card__title">関連コンテンツ</p>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
+                <li><a href="post.html?id=ai-introduction-checklist" style="font-size:0.88rem;color:var(--text);text-decoration:none;line-height:1.5;display:block;">失敗しないAI導入のための3つのチェックポイント</a></li>
+                <li><a href="post.html?id=ai-training-3principles" style="font-size:0.88rem;color:var(--text);text-decoration:none;line-height:1.5;display:block;">社員が自然にAIを使い始める研修設計の3原則</a></li>
+              </ul>
+            </div>
+          </aside>
+
+        </div><!-- /.check-layout -->
+      </div><!-- /.container -->
+    </section>
+
+    <!-- CTA -->
+    <section class="section--cta">
+      <div class="container">
+        <div class="cta__inner">
+          <div class="cta__text-block">
+            <h2 class="cta__title">診断結果を、改善につなげましょう。</h2>
+            <p class="cta__desc">
+              社内ルール整備・ツール設定・社員研修まで、一気通貫でサポートします。<br>
+              60分の無料相談で、御社の状況に合った対策を提案します。
+            </p>
+          </div>
+          <div class="cta__actions">
+            <a href="../contact.html" class="btn btn--primary btn--lg">無料相談を申し込む →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../images/logo.png" alt="マネーデザインAI" class="footer__logo-img">
+        </a>
+        <p class="footer__tagline">生成AI 導入支援</p>
+        <p class="footer__desc">中小企業の現場に寄り添い、<br>生成AI導入から定着まで<br>一気通貫でサポートします。</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Services</p>
+        <ul>
+          <li><a href="../services.html#s1">現状診断・ロードマップ策定</a></li>
+          <li><a href="../services.html#s2">ツール選定・導入支援</a></li>
+          <li><a href="../services.html#s3">運用定着・研修サポート</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html">ブログ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Company</p>
+        <ul>
+          <li><a href="../about.html">会社情報</a></li>
+          <li><a href="../contact.html">お問い合わせ</a></li>
+          <li><a href="../contact.html#consultation">無料相談</a></li>
+          <li><a href="../contact.html#document">資料請求</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; 2026 株式会社マネーデザイン. All rights reserved.</p>
+        <nav class="footer__legal">
+          <a href="../privacy.html">プライバシーポリシー</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    'use strict';
+
+    // ── スコア計算 ──
+    const RESULTS = [
+      {
+        min: 0, max: 0,
+        label: '診断を開始してください',
+        rank: null,
+        text: '各項目にチェックを入れると、診断結果と対応方針が表示されます。'
+      },
+      {
+        min: 1, max: 4,
+        label: '要対処',
+        rank: '4点以下：早急な対処が必要です',
+        text: 'AIを使っている分だけリスクが積み重なっている状態です。まず「Q3：データ学習のオフ設定」と「Q4：社内利用ルールの整備」から始めてください。一人でやるより専門家と一緒に整理する方が早く確実です。'
+      },
+      {
+        min: 5, max: 7,
+        label: '部分的なリスクあり',
+        rank: '5〜7点：部分的なリスクが残っています',
+        text: 'チェックが入らなかった項目が実際のリスクポイントです。Q3・Q4を優先に、優先度の高いものから一つずつ対処しましょう。'
+      },
+      {
+        min: 8, max: 10,
+        label: '基本対策OK',
+        rank: '8〜10点：基本対策は整っています',
+        text: 'AI利用ポリシーの定期見直し（年1回）と業務別リスク評価を検討してください。新しいツールを追加するたびに同じ視点で再点検する習慣をつけると安心です。'
+      }
+    ];
+
+    function updateScore() {
+      const cbs = document.querySelectorAll('.checklist__cb');
+      let count = 0;
+      cbs.forEach(cb => { if (cb.checked) count++; });
+
+      // スコア表示
+      document.getElementById('scoreNum').textContent = count;
+      document.getElementById('scoreBarFill').style.width = (count * 10) + '%';
+
+      // 結果テキスト
+      const res = RESULTS.find(r => count >= r.min && count <= r.max) || RESULTS[0];
+      document.getElementById('scoreLabel').textContent = res.label;
+
+      const resultEl = document.getElementById('scoreResult');
+      if (res.rank) {
+        resultEl.innerHTML = '<span class="result-rank">' + res.rank + '</span>' + res.text;
+      } else {
+        resultEl.textContent = res.text;
+      }
+    }
+
+    // ── URL コピー ──
+    function copyUrl(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText(location.href).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✓ コピーしました';
+        setTimeout(() => { btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> URLをコピー'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

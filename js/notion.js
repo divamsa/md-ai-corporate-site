@@ -1,105 +1,158 @@
 /* ==========================================
-   notion.js - Notion API連携 (T-401〜T-403)
-   現時点: プレースホルダー
-   実装予定: T-401 でAPIキー設定後に完成
+   notion.js — ブログ記事描画 (T-401〜T-404)
+
+   【仕組み】
+   Notion API は CORS制限のためブラウザから直接呼べないため、
+   scripts/fetch-blog.js（Node.js）でビルド時に取得した
+   blog/posts.json を fetch して描画する。
+
+   【記事更新手順】
+   1. Notionで記事を書いて「公開」をチェック
+   2. node scripts/fetch-blog.js  → blog/posts.json が更新される
+   3. git add blog/posts.json && git commit -m "ブログ更新" && git push
    ========================================== */
 
 'use strict';
 
-// ⚠️ T-401 実装時に設定
-const NOTION_TOKEN   = 'YOUR_NOTION_INTEGRATION_TOKEN'; // 要設定
-const NOTION_DB_ID   = 'YOUR_NOTION_DATABASE_ID';       // 要設定
-const NOTION_API_URL = 'https://api.notion.com/v1';
+// ─── posts.json のパスを現在のページ位置から自動判定 ───
+// index.html（ルート）→ blog/posts.json
+// blog/index.html    → posts.json
+const _onBlogPage = location.pathname.includes('/blog/');
+const POSTS_JSON  = _onBlogPage ? 'posts.json' : 'blog/posts.json';
 
 /**
- * ブログ記事一覧を取得してDOMに描画
- * @param {string} containerId - 描画先要素のID
- * @param {number} limit        - 表示件数
+ * HTMLエスケープ（XSS対策）
+ */
+function escHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/**
+ * ブログ記事をDOMに描画する
+ * @param {string} containerId - 描画先要素のID（デフォルト: 'blogGrid'）
+ * @param {number} limit        - 表示件数（0 = 全件）
  */
 async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // T-401 実装前はプレースホルダー記事を表示
-  if (NOTION_TOKEN === 'YOUR_NOTION_INTEGRATION_TOKEN') {
-    container.innerHTML = renderPlaceholderPosts(limit);
-    return;
-  }
+  // コンテナのクラスでレンダリングモードを決定
+  // .blog__list → 横1列リスト（トップページ用）
+  // .blog__grid → カードグリッド（ブログ一覧ページ用）
+  const isListMode = container.classList.contains('blog__list');
+
+  container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
 
   try {
-    container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
+    const res = await fetch(POSTS_JSON);
+    if (!res.ok) throw new Error(`posts.json の取得に失敗しました (${res.status})`);
 
-    const res = await fetch(`${NOTION_API_URL}/databases/${NOTION_DB_ID}/query`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        filter: { property: '公開', checkbox: { equals: true } },
-        sorts: [{ property: '公開日', direction: 'descending' }],
-        page_size: limit,
-      }),
-    });
+    const { posts } = await res.json();
+    const items = (limit > 0) ? posts.slice(0, limit) : posts;
 
-    if (!res.ok) throw new Error(`Notion API error: ${res.status}`);
-    const data = await res.json();
-    container.innerHTML = data.results.map(pageToCard).join('') || '<p class="loading">記事がありません</p>';
+    if (!items.length) {
+      container.innerHTML = '<p class="loading">記事がありません</p>';
+      return;
+    }
+
+    container.innerHTML = items.map(p => postToItem(p, isListMode)).join('');
+
+    // IntersectionObserver で fade-in を再トリガー（動的追加要素対応）
+    const fadeEls = container.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeEls.forEach(el => obs.observe(el));
+    } else {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
 
   } catch (err) {
-    console.error('Notion fetch error:', err);
-    container.innerHTML = renderPlaceholderPosts(limit);
+    console.warn('Blog fetch:', err.message);
+    // フォールバック: サンプル記事を表示
+    container.innerHTML = _placeholderPosts(limit || 3).map(p => postToItem(p, isListMode)).join('');
   }
 }
 
 /**
- * Notion ページオブジェクト → カードHTML
+ * 記事オブジェクト → HTML（モードによりカード or リスト行）
  */
-function pageToCard(page) {
-  const props = page.properties;
-  const title    = props['タイトル']?.title?.[0]?.plain_text ?? '（タイトルなし）';
-  const category = props['カテゴリ']?.select?.name ?? '';
-  const date     = props['公開日']?.date?.start ?? '';
-  const slug     = page.id;
+function postToItem(p, isListMode) {
+  const href = _onBlogPage
+    ? `post.html?id=${encodeURIComponent(p.slug)}`
+    : `blog/post.html?id=${encodeURIComponent(p.slug)}`;
 
-  const formattedDate = date ? new Date(date).toLocaleDateString('ja-JP') : '';
+  const formattedDate = p.date
+    ? new Date(p.date).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
+    : '';
 
+  if (isListMode) {
+    // ─── リスト行（トップページ用: editorial row） ───
+    return `
+      <a class="blog-list-item fade-in" href="${href}">
+        <span class="blog-list-item__category">${p.category ? escHtml(p.category) : '—'}</span>
+        <span class="blog-list-item__title">${escHtml(p.title)}</span>
+        <time class="blog-list-item__date" datetime="${p.date}">${formattedDate}</time>
+      </a>
+    `.trim();
+  }
+
+  // ─── カード（ブログ一覧ページ用） ───
   return `
-    <article class="blog-card fade-in">
+    <article class="blog-card fade-in" data-category="${escHtml(p.category || '')}">
       <div class="blog-card__body">
-        ${category ? `<span class="blog-card__category">${category}</span>` : ''}
+        ${p.category ? `<span class="blog-card__category">${escHtml(p.category)}</span>` : ''}
         <h3 class="blog-card__title">
-          <a href="blog/post.html?id=${slug}">${title}</a>
+          <a href="${href}">${escHtml(p.title)}</a>
         </h3>
-        <time class="blog-card__date" datetime="${date}">${formattedDate}</time>
+        ${p.excerpt ? `<p class="blog-card__excerpt">${escHtml(p.excerpt)}</p>` : ''}
+        <time class="blog-card__date" datetime="${p.date}">${formattedDate}</time>
       </div>
     </article>
-  `;
+  `.trim();
 }
+
+// 後方互換エイリアス
+const postToCard = (p) => postToItem(p, false);
 
 /**
- * APIキー未設定時のプレースホルダー
+ * posts.json 未生成時のフォールバックデータ
  */
-function renderPlaceholderPosts(limit) {
-  const samples = [
-    { category: '活用事例', title: '中小企業でのChatGPT活用術5選', date: '2025-02-01' },
-    { category: 'AI基礎', title: '生成AIツール比較：ChatGPT vs Claude vs Gemini', date: '2025-01-20' },
-    { category: '導入Tips', title: '失敗しないAI導入のための3つのチェックポイント', date: '2025-01-10' },
-  ];
-
-  return samples.slice(0, limit).map(p => `
-    <article class="blog-card fade-in">
-      <div class="blog-card__body">
-        <span class="blog-card__category">${p.category}</span>
-        <h3 class="blog-card__title">${p.title}</h3>
-        <time class="blog-card__date">${new Date(p.date).toLocaleDateString('ja-JP')}</time>
-      </div>
-    </article>
-  `).join('');
+function _placeholderPosts(limit) {
+  return [
+    {
+      slug: '#', category: '活用事例',
+      title: '中小企業でのChatGPT活用術5選',
+      date: '2026-02-01',
+      excerpt: 'ChatGPTを使って業務効率化を実現した中小企業の具体的な事例を5つご紹介します。',
+    },
+    {
+      slug: '#', category: 'AI基礎',
+      title: '生成AIツール比較：ChatGPT vs Claude vs Gemini',
+      date: '2026-01-20',
+      excerpt: '主要3ツールの特徴・料金・使い分けを徹底比較します。',
+    },
+    {
+      slug: '#', category: '導入Tips',
+      title: '失敗しないAI導入のための3つのチェックポイント',
+      date: '2026-01-10',
+      excerpt: 'AI導入を成功させるための重要なポイントを解説します。',
+    },
+  ].slice(0, limit);
 }
 
-/* 実行 */
+/* ─── エントリーポイント ─── */
 document.addEventListener('DOMContentLoaded', () => {
-  renderBlogPosts('blogGrid', 3);
+  // ブログ一覧ページ → 全件、トップページ → 3件
+  renderBlogPosts('blogGrid', _onBlogPage ? 0 : 3);
 });

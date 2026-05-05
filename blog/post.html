@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 動的に上書きされる -->
+  <meta name="description"           id="metaDesc"    content="">
+  <meta property="og:title"          id="ogTitle"     content="">
+  <meta property="og:description"    id="ogDesc"      content="">
+  <meta property="og:type"                            content="article">
+  <meta property="og:image"                           content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta property="og:site_name"                       content="株式会社マネーデザイン">
+  <meta property="og:locale"                          content="ja_JP">
+  <meta name="twitter:card"                           content="summary_large_image">
+  <meta name="twitter:image"                          content="https://ai.moneydesign.co.jp/images/ogp.png">
+  <meta name="robots"                                 content="index, follow">
+  <title id="pageTitle">記事｜マネーデザイン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    /* ── 記事詳細ページ固有スタイル ── */
+    .post-hero {
+      background: var(--bg-surface);
+      padding: var(--sp-6) 0 var(--sp-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .post-hero__category {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .post-hero__title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .post-hero__meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+    }
+
+    /* ── 記事本文 ── */
+    .post-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: var(--sp-8);
+      align-items: start;
+      padding: var(--sp-8) 0;
+    }
+    .post-body {
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .post-body h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-strong);
+    }
+    .post-body h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      margin: 2rem 0 0.75rem;
+    }
+    .post-body h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .post-body p {
+      margin-bottom: 1.25rem;
+    }
+    .post-body ul,
+    .post-body ol {
+      margin: 0 0 1.25rem 1.5rem;
+    }
+    .post-body li {
+      margin-bottom: 0.4rem;
+    }
+    .post-body blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1.25rem;
+      background: var(--bg-surface);
+      margin: 1.5rem 0;
+      color: var(--text-sub);
+      font-style: italic;
+    }
+    .post-body pre {
+      background: var(--bg-elevated);
+      color: var(--text);
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      border: 1px solid var(--border);
+    }
+    .post-body code {
+      background: var(--bg-elevated);
+      color: var(--text);
+      padding: 0.15em 0.4em;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+    }
+    .post-body pre code {
+      background: transparent;
+      padding: 0;
+    }
+    .post-body .callout {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      color: var(--text);
+    }
+    .post-body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .post-body figure {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .post-body figure img {
+      max-width: 100%;
+    }
+    .post-body figcaption {
+      font-size: 0.875rem;
+      color: var(--text-sub);
+      margin-top: 0.5rem;
+    }
+
+    /* ── サイドバー ── */
+    .post-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+    .sidebar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: var(--sp-4);
+      margin-bottom: var(--sp-4);
+    }
+    .sidebar-card__title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .related-posts {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .related-posts li a {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+      text-decoration: none;
+      display: block;
+    }
+    .related-posts li a:hover { color: var(--accent); }
+    .related-posts li time {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+    }
+
+    /* ── ナビゲーション ── */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: var(--sp-8);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--border);
+    }
+    .post-nav a {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .post-nav a:hover { color: var(--text); }
+
+    /* ── ローディング・エラー ── */
+    .post-loading, .post-error {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-sub);
+    }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 768px) {
+      .post-layout {
+        grid-template-columns: 1fr;
+        padding: 2rem 0;
+      }
+      .post-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ヘッダー -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="../index.html" class="header__logo">
+        <img src="../images/logo.png" alt="マネーデザインAI" class="header__logo-img">
+      </a>
+      <nav class="header__nav" id="globalNav">
+        <ul class="nav__list">
+          <li><a href="../services.html">サービス</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html" style="color:var(--accent)">ブログ</a></li>
+          <li><a href="../about.html">会社情報</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="../contact.html" class="btn btn--primary">無料相談</a>
+        </div>
+      </nav>
+      <a href="../contact.html" class="btn btn--primary header__cta">無料相談</a>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- パンくずリスト -->
+  <nav class="breadcrumb" aria-label="パンくず" style="background:var(--bg-surface);border-bottom:1px solid var(--border);">
+    <div class="container" style="padding:0.6rem var(--sp-4);font-size:0.8rem;color:var(--text-sub);">
+      <a href="../index.html" style="color:var(--text-sub);text-decoration:none;">ホーム</a>
+      <span style="margin:0 0.4rem;">›</span>
+      <a href="index.html" style="color:var(--text-sub);text-decoration:none;">ブログ</a>
+      <span style="margin:0 0.4rem;">›</span>
+      <span id="breadcrumbTitle">記事</span>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 記事ヒーロー -->
+    <div class="post-hero" id="postHero" style="display:none;">
+      <div class="container">
+        <span class="post-hero__category" id="postCategory"></span>
+        <h1 class="post-hero__title" id="postTitle"></h1>
+        <div class="post-hero__meta">
+          <time id="postDate"></time>
+        </div>
+      </div>
+    </div>
+
+    <!-- 記事コンテンツ -->
+    <section>
+      <div class="container">
+        <div class="post-loading" id="postLoading">記事を読み込み中...</div>
+        <div class="post-error"  id="postError"   style="display:none;">
+          <p>記事が見つかりませんでした。</p>
+          <a href="index.html" class="btn btn--outline" style="margin-top:1rem;">ブログ一覧へ戻る</a>
+        </div>
+
+        <div class="post-layout" id="postLayout" style="display:none;">
+          <!-- 本文 -->
+          <article class="post-body" id="postBody"></article>
+
+          <!-- サイドバー -->
+          <aside class="post-sidebar">
+            <div class="sidebar-card">
+              <p class="sidebar-card__title">関連記事</p>
+              <ul class="related-posts" id="relatedPosts"></ul>
+            </div>
+            <div class="sidebar-card" style="text-align:center;">
+              <p style="font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:0.75rem;">生成AI導入を相談する</p>
+              <p style="font-size:0.8rem;color:var(--text-sub);margin-bottom:1rem;line-height:1.7;">無料相談で御社の課題に合わせたAI活用をご提案します。</p>
+              <a href="../contact.html" class="btn btn--primary" style="width:100%;justify-content:center;">無料相談はこちら</a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- 前後記事ナビゲーション -->
+        <div class="post-nav" id="postNav" style="display:none;">
+          <div id="prevPost"></div>
+          <a href="index.html">← ブログ一覧へ</a>
+          <div id="nextPost"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAセクション -->
+    <section class="section--cta" id="ctaSection" style="display:none;">
+      <div class="container">
+        <div class="cta__inner">
+          <div class="cta__text-block">
+            <h2 class="cta__title">生成AI導入のご相談は無料です</h2>
+            <p class="cta__desc">現状診断からツール選定、運用定着まで一気通貫でサポートします。</p>
+          </div>
+          <div class="cta__actions">
+            <a href="../contact.html" class="btn btn--primary">無料相談を申し込む →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../images/logo.png" alt="マネーデザインAI" class="footer__logo-img">        </a>
+        <p class="footer__tagline">生成AI 導入支援</p>
+        <p class="footer__desc">中小企業の現場に寄り添い、<br>生成AI導入から定着まで<br>一気通貫でサポートします。</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Services</p>
+        <ul>
+          <li><a href="../services.html#s1">現状診断・ロードマップ策定</a></li>
+          <li><a href="../services.html#s2">ツール選定・導入支援</a></li>
+          <li><a href="../services.html#s3">運用定着・研修サポート</a></li>
+          <li><a href="../cases.html">導入事例</a></li>
+          <li><a href="index.html">ブログ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-title">Company</p>
+        <ul>
+          <li><a href="../about.html">会社情報</a></li>
+          <li><a href="../contact.html">お問い合わせ</a></li>
+          <li><a href="../contact.html#consultation">無料相談</a></li>
+          <li><a href="../contact.html#document">資料請求</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; 2026 株式会社マネーデザイン. All rights reserved.</p>
+        <nav class="footer__legal">
+          <a href="../privacy.html">プライバシーポリシー</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    'use strict';
+
+    (async () => {
+      // ── URL パラメータからスラッグを取得 ──
+      const params = new URLSearchParams(location.search);
+      const slug   = params.get('id');
+
+      if (!slug) { showError(); return; }
+
+      // ── posts.json を取得 ──
+      let posts = [];
+      try {
+        const res = await fetch('posts.json');
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        posts = data.posts || [];
+      } catch {
+        showError();
+        return;
+      }
+
+      // ── スラッグで記事を検索 ──
+      const post = posts.find(p => p.slug === slug);
+      if (!post) { showError(); return; }
+
+      // ── DOM に描画 ──
+      renderPost(post, posts);
+    })();
+
+    function renderPost(post, allPosts) {
+      // <head> の動的メタ更新
+      document.title = `${post.title}｜マネーデザイン`;
+      document.getElementById('pageTitle').textContent   = `${post.title}｜マネーデザイン`;
+      document.getElementById('metaDesc').setAttribute('content', post.excerpt);
+      document.getElementById('ogTitle').setAttribute('content', post.title);
+      document.getElementById('ogDesc').setAttribute('content', post.excerpt);
+      document.getElementById('breadcrumbTitle').textContent = post.title;
+
+      // ヒーロー
+      document.getElementById('postCategory').textContent = post.category;
+      document.getElementById('postTitle').textContent    = post.title;
+      const dateEl = document.getElementById('postDate');
+      if (post.date) {
+        dateEl.textContent = new Date(post.date).toLocaleDateString('ja-JP');
+        dateEl.setAttribute('datetime', post.date);
+      }
+      document.getElementById('postHero').style.display = '';
+
+      // 本文
+      const bodyEl = document.getElementById('postBody');
+      if (post.body && post.body.trim()) {
+        bodyEl.innerHTML = post.body;
+      } else {
+        bodyEl.innerHTML = '<p style="color:var(--text-sub);">本文は準備中です。</p>';
+      }
+
+      // 関連記事（同カテゴリから最大3件）
+      const related = allPosts
+        .filter(p => p.slug !== post.slug && p.category === post.category)
+        .slice(0, 3);
+      const relatedEl = document.getElementById('relatedPosts');
+      if (related.length) {
+        relatedEl.innerHTML = related.map(p => `
+          <li>
+            <a href="post.html?id=${encodeURIComponent(p.slug)}">${p.title}</a>
+            <time>${p.date ? new Date(p.date).toLocaleDateString('ja-JP') : ''}</time>
+          </li>
+        `).join('');
+      } else {
+        // 他カテゴリから補完
+        const others = allPosts.filter(p => p.slug !== post.slug).slice(0, 2);
+        relatedEl.innerHTML = others.map(p => `
+          <li>
+            <a href="post.html?id=${encodeURIComponent(p.slug)}">${p.title}</a>
+            <time>${p.date ? new Date(p.date).toLocaleDateString('ja-JP') : ''}</time>
+          </li>
+        `).join('');
+      }
+
+      // 前後記事ナビゲーション
+      const idx  = allPosts.findIndex(p => p.slug === post.slug);
+      const prev = allPosts[idx - 1];
+      const next = allPosts[idx + 1];
+      if (prev) {
+        document.getElementById('prevPost').innerHTML =
+          `<a href="post.html?id=${encodeURIComponent(prev.slug)}">← ${prev.title}</a>`;
+      }
+      if (next) {
+        document.getElementById('nextPost').innerHTML =
+          `<a href="post.html?id=${encodeURIComponent(next.slug)}">${next.title} →</a>`;
+      }
+
+      // レイアウトを表示
+      document.getElementById('postLoading').style.display = 'none';
+      document.getElementById('postLayout').style.display  = '';
+      document.getElementById('postNav').style.display     = '';
+      document.getElementById('ctaSection').style.display  = '';
+
+      // フェードイン
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    }
+
+    function showError() {
+      document.getElementById('postLoading').style.display = 'none';
+      document.getElementById('postError').style.display   = '';
+    }
+  </script>
+</body>
+</html>
