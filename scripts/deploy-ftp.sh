@@ -46,19 +46,22 @@ set net:timeout 30
 set net:max-retries 3
 
 cd $FTP_DIR
-# 過去に誤ってアップロードされた Git 管理フォルダをサーバーから削除（無い場合でも続行）
+# 過去に誤ってアップロードされた開発用フォルダをサーバーから削除（無い場合でも続行）
 rm -r -f .git
+rm -r -f .claude
 
-# ─ アップロード（差分のみ / .git .env.local scripts/ 等は除外）
-# 注: --exclude-glob .git はサブパスに効かないことがあるため、
-#     正規表現 --exclude で .git ディレクトリ全体を必ず除外する。
+# ─ アップロード（差分のみ / .git .claude .env.local scripts/ 等は除外）
+# 注: --exclude-glob はサブパスに効かないことがあるため、
+#     正規表現 --exclude でディレクトリ全体を必ず除外する。
 #     --delete-excluded は scripts/ など他の除外までリモート削除するため使わない。
 mirror --reverse \
        --parallel=5 \
        --delete \
        --verbose \
        --exclude '^\.git(/|$)' \
+       --exclude '^\.claude(/|$)' \
        --exclude-glob .git \
+       --exclude-glob .claude \
        --exclude-glob .env.local \
        --exclude-glob scripts/ \
        --exclude-glob node_modules/ \
