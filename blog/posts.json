@@ -4,10 +4,10 @@
       "id": "316fb3c0-144b-8223-ee05-security-checklist-2026",
       "notion_page_id": "319fb3c0-144b-8245-c090-e5f3a918d628",
       "slug": "ai-security-checklist",
-      "title": "【10問で診断】AI導入前に必ずチェックすべきセキュリティ診断シート",
+      "title": "AI導入前に確認したいセキュリティチェックリスト",
       "category": "導入Tips",
       "date": "2026-04-16",
-      "excerpt": "「うちはChatGPTを使っているよ」と言いながら、顧客情報をそのまま入力している担当者がいませんか？10問のチェックリストで、自社のAIセキュリティリスクを今すぐ診断できます。",
+      "excerpt": "中小企業が生成AIを導入する前に確認すべき情報管理・社内ルール・運用体制を10項目で整理します。",
       "body": "ai-security-checklist.html"
     },
     {
