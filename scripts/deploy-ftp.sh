@@ -7,7 +7,7 @@
 #      FTP_HOST=sv****.xserver.jp
 #      FTP_USER=アカウント名
 #      FTP_PASS=FTPパスワード
-#      FTP_DIR=.   （ログイン直下が public_html の場合。/home/... の絶対パスはズレることがある）
+#      FTP_DIR=.   （ログイン直下が public_html の場合。デプロイ開始時に FTP で cd してから mirror）
 #
 #   2. lftp がインストールされていること
 #      Mac:   brew install lftp
@@ -45,11 +45,19 @@ set ssl:verify-certificate no
 set net:timeout 30
 set net:max-retries 3
 
-# ─ アップロード（差分のみ / .git .env.local scripts/ は除外）
+cd $FTP_DIR
+# 過去に誤ってアップロードされた Git 管理フォルダをサーバーから削除（無い場合でも続行）
+rm -r -f .git
+
+# ─ アップロード（差分のみ / .git .env.local scripts/ 等は除外）
+# 注: --exclude-glob .git はサブパスに効かないことがあるため、
+#     正規表現 --exclude で .git ディレクトリ全体を必ず除外する。
+#     --delete-excluded は scripts/ など他の除外までリモート削除するため使わない。
 mirror --reverse \
        --parallel=5 \
        --delete \
        --verbose \
+       --exclude '^\.git(/|$)' \
        --exclude-glob .git \
        --exclude-glob .env.local \
        --exclude-glob scripts/ \
@@ -57,7 +65,7 @@ mirror --reverse \
        --exclude-glob .gitignore \
        --exclude-glob README.md \
        "$SITE_DIR/" \
-       "$FTP_DIR/"
+       .
 
 bye
 LFTP_CMDS
