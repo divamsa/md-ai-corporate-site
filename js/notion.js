@@ -48,7 +48,7 @@ async function renderBlogPosts(containerId = 'blogGrid', limit = 3) {
   container.innerHTML = '<p class="loading">記事を読み込み中...</p>';
 
   try {
-    const res = await fetch(POSTS_JSON);
+    const res = await fetch(POSTS_JSON, { cache: 'no-store' });
     if (!res.ok) throw new Error(`posts.json の取得に失敗しました (${res.status})`);
 
     const { posts } = await res.json();

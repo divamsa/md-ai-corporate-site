@@ -7,7 +7,7 @@
 #      FTP_HOST=sv****.xserver.jp
 #      FTP_USER=アカウント名
 #      FTP_PASS=FTPパスワード
-#      FTP_DIR=/ai.moneydesign.co.jp/public_html
+#      FTP_DIR=.   （ログイン直下が public_html の場合。/home/... の絶対パスはズレることがある）
 #
 #   2. lftp がインストールされていること
 #      Mac:   brew install lftp
@@ -64,4 +64,4 @@ LFTP_CMDS
 
 echo ""
 echo "✅ アップロード完了！"
-echo "   https://ai.moneydesign.co.jp/ を確認してください"
+echo "   https://aimoneydesign.com/ を確認してください"

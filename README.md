@@ -90,7 +90,7 @@ https://divamsa.github.io/md-ai-corporate-site/
 FTP_HOST=XXXXXXXX.xsrv.jp
 FTP_USER=XXXXXXXX
 FTP_PASS=XXXXXXXX
-FTP_DIR=/home/XXXXXXXX/ai.moneydesign.co.jp/public_html
+FTP_DIR=/home/XXXXXXXX/aimoneydesign.com/public_html
 ```
 
 ```bash
@@ -99,7 +99,7 @@ bash scripts/deploy-ftp.sh
 npm run deploy
 ```
 
-本番 URL: `https://ai.moneydesign.co.jp`
+本番 URL: `https://aimoneydesign.com`
 
 ## 環境変数一覧
 
