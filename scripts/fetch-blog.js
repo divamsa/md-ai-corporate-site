@@ -163,13 +163,25 @@ async function fetchPageBody(pageId) {
 async function fetchPosts() {
   console.log('📡 Notion API に接続中...');
 
+  // 公開日プロパティが「今日（JST）以前」の記事だけを取得する
+  const now = new Date();
+  const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  const today = jst.toISOString().split('T')[0]; // YYYY-MM-DD（JST基準）
+
   const res = await fetch(
     `https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`,
     {
       method: 'POST',
       headers: NOTION_HEADERS,
       body: JSON.stringify({
-        filter: { property: '公開', checkbox: { equals: true } },
+        filter: {
+          and: [
+            {
+              property: '公開日',
+              date: { on_or_before: today },
+            },
+          ],
+        },
         sorts: [{ property: '公開日', direction: 'descending' }],
       }),
     }
