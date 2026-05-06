@@ -383,7 +383,7 @@
       // ── posts.json を取得 ──
       let posts = [];
       try {
-        const res = await fetch('posts.json');
+        const res = await fetch('posts.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('fetch failed');
         const data = await res.json();
         posts = data.posts || [];
@@ -397,10 +397,70 @@
       if (!post) { showError(); return; }
 
       // ── DOM に描画 ──
-      renderPost(post, posts);
+      await renderPost(post, posts);
     })();
 
-    function renderPost(post, allPosts) {
+    function isHtmlAssetRef(body) {
+      const s = String(body).trim();
+      if (!s || !s.endsWith('.html')) return false;
+      if (s.includes('<')) return false;
+      if (s.includes('..') || s.includes('://') || s.startsWith('/')) return false;
+      return true;
+    }
+
+    function extractEmbeddedArticleHtml(doc) {
+      const selectors = [
+        'main article .article-body .container',
+        'main article .article-body',
+        'main article .post-body',
+        'article .article-body .container'
+      ];
+      for (const sel of selectors) {
+        const el = doc.querySelector(sel);
+        if (el && el.innerHTML.trim()) return el.innerHTML;
+      }
+      return null;
+    }
+
+    function injectHeadStylesFromFetchedDoc(doc) {
+      document.querySelectorAll('style[data-injected-article-styles]').forEach((el) => el.remove());
+      doc.head.querySelectorAll('style').forEach((st) => {
+        const out = document.createElement('style');
+        out.setAttribute('data-injected-article-styles', '1');
+        out.textContent = st.textContent;
+        document.head.appendChild(out);
+      });
+    }
+
+    function execFetchedBodyInlineScripts(doc) {
+      doc.body.querySelectorAll('script:not([src])').forEach((old) => {
+        const s = document.createElement('script');
+        s.textContent = old.textContent;
+        document.body.appendChild(s);
+      });
+    }
+
+    async function setPostBodyFromField(bodyEl, body) {
+      if (!body) {
+        bodyEl.innerHTML = '<p style="color:var(--text-sub);">本文は準備中です。</p>';
+        return;
+      }
+      if (isHtmlAssetRef(body)) {
+        const res = await fetch(body, { cache: 'no-store' });
+        if (!res.ok) throw new Error('記事HTMLの取得に失敗しました');
+        const htmlText = await res.text();
+        const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+        injectHeadStylesFromFetchedDoc(doc);
+        const embedded = extractEmbeddedArticleHtml(doc);
+        if (!embedded) throw new Error('記事HTMLから本文領域を特定できませんでした');
+        bodyEl.innerHTML = embedded;
+        execFetchedBodyInlineScripts(doc);
+        return;
+      }
+      bodyEl.innerHTML = body;
+    }
+
+    async function renderPost(post, allPosts) {
       // <head> の動的メタ更新
       document.title = `${post.title}｜マネーデザイン`;
       document.getElementById('pageTitle').textContent   = `${post.title}｜マネーデザイン`;
@@ -419,12 +479,13 @@
       }
       document.getElementById('postHero').style.display = '';
 
-      // 本文
+      // 本文（.html 参照のときは同階層HTMLを fetch して挿入）
       const bodyEl = document.getElementById('postBody');
-      if (post.body && post.body.trim()) {
-        bodyEl.innerHTML = post.body;
-      } else {
-        bodyEl.innerHTML = '<p style="color:var(--text-sub);">本文は準備中です。</p>';
+      try {
+        await setPostBodyFromField(bodyEl, post.body && post.body.trim());
+      } catch (err) {
+        console.warn(err);
+        bodyEl.innerHTML = '<p style="color:var(--text-sub);">記事本文の読み込みに失敗しました。</p>';
       }
 
       // 関連記事（同カテゴリから最大3件）
@@ -465,6 +526,7 @@
 
       // レイアウトを表示
       document.getElementById('postLoading').style.display = 'none';
+      document.getElementById('postError').style.display   = 'none';
       document.getElementById('postLayout').style.display  = '';
       document.getElementById('postNav').style.display     = '';
       document.getElementById('ctaSection').style.display  = '';
