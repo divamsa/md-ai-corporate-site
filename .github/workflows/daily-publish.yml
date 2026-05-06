@@ -1,0 +1,61 @@
+name: Daily publish (Notion -> Xserver)
+
+on:
+  # JST=UTC+9. 00:15 JST = 15:15 UTC.
+  schedule:
+    - cron: "15 15 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: daily-publish
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Fetch posts.json from Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+        run: |
+          npm run fetch-blog
+
+      - name: Commit posts.json (if changed)
+        run: |
+          if git diff --quiet -- blog/posts.json; then
+            echo "No changes in blog/posts.json"
+            exit 0
+          fi
+
+          git add blog/posts.json
+          git commit -m "chore(blog): daily sync from Notion"
+          git push
+
+      - name: Deploy to Xserver via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        run: |
+          npm run deploy
+

@@ -51,7 +51,7 @@ npx serve .
 
 ## ブログ記事の更新
 
-Notion データベースから `posts.json` を再生成するスクリプトです。
+今後、記事を順次追加していくときの標準手順です。
 
 ### 前提
 
@@ -62,7 +62,15 @@ NOTION_TOKEN=secret_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 NOTION_DB_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-### 実行
+### 手順（Notion から追加する場合）
+
+1. Notion で記事を公開状態にする（タイトル・カテゴリ・概要を確認）。
+2. `node scripts/fetch-blog.js` を実行して `blog/posts.json` を再生成する。
+3. `blog/index.html` を開いて、記事カードが増えているか確認する。
+4. `blog/post.html?id=<slug>` を開いて、本文表示に問題がないか確認する。
+5. 問題なければ FTP デプロイと Git 反映を行う（下の「デプロイ」参照）。
+
+### 実行コマンド
 
 ```bash
 node scripts/fetch-blog.js
@@ -71,6 +79,16 @@ npm run fetch-blog
 ```
 
 実行後、`blog/posts.json` が更新されます。
+
+### 手順（手動で記事を追加する場合）
+
+1. `blog/` に記事 HTML を作成する（例: `your-article.html`）。
+2. `blog/posts.json` に 1 件追加する（`slug` / `title` / `category` / `date` / `excerpt` / `body`）。
+3. `body` は次のどちらかにする。
+   - 記事本文を直接入れる（HTML文字列）
+   - ファイル参照にする（例: `"body": "your-article.html"`）
+4. `blog/index.html` と `blog/post.html?id=<slug>` で表示確認する。
+5. 問題なければ FTP デプロイと Git 反映を行う。
 
 ## デプロイ
 
@@ -90,8 +108,11 @@ https://divamsa.github.io/md-ai-corporate-site/
 FTP_HOST=XXXXXXXX.xsrv.jp
 FTP_USER=XXXXXXXX
 FTP_PASS=XXXXXXXX
-FTP_DIR=/home/XXXXXXXX/aimoneydesign.com/public_html
+FTP_DIR=.
 ```
+
+`FTP_DIR=.` は「FTP ログイン直後のフォルダ」を意味します。  
+このプロジェクトでは、ログイン直後が公開ディレクトリ（`public_html` 相当）です。
 
 ```bash
 bash scripts/deploy-ftp.sh
@@ -99,7 +120,48 @@ bash scripts/deploy-ftp.sh
 npm run deploy
 ```
 
+### 公開確認（毎回）
+
+1. `https://aimoneydesign.com/blog/posts.json` を開き、記事件数と追加記事の `slug` を確認。
+2. `https://aimoneydesign.com/blog/` を開き、一覧カードが増えているか確認。
+3. 追加記事の詳細 URL（`/blog/post.html?id=<slug>` または `/blog/<file>.html`）を開いて確認。
+
+### Git 反映（毎回）
+
+```bash
+git add .
+git commit -m "Add blog article: <slug>"
+git push origin main
+```
+
 本番 URL: `https://aimoneydesign.com`
+
+## 自動公開（1日1本ペースで反映したい場合）
+
+GitHub Actions で「毎日1回、Notion → `blog/posts.json` 更新 → XserverへFTPデプロイ」を自動実行できます。
+
+### 仕組み
+
+- ワークフロー: `.github/workflows/daily-publish.yml`
+- 動作:
+  - `npm run fetch-blog`（Notion から `blog/posts.json` を再生成）
+  - `blog/posts.json` に変更があれば自動コミット＆push
+  - `npm run deploy`（XserverへFTPデプロイ）
+
+### 事前準備（GitHubのSecrets）
+
+GitHub リポジトリの Settings → Secrets and variables → Actions に、以下を登録します。
+
+- `NOTION_TOKEN`
+- `NOTION_DB_ID`
+- `FTP_HOST`
+- `FTP_USER`
+- `FTP_PASS`
+- `FTP_DIR`（推奨: `.`）
+
+### 実行タイミング
+
+ワークフローは **毎日 00:15（JST）** に動きます（必要なら `daily-publish.yml` の `cron` を変更）。
 
 ## 環境変数一覧
 
