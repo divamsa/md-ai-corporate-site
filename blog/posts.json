@@ -1,16 +1,6 @@
 {
   "posts": [
     {
-      "id": "316fb3c0-144b-8223-ee05-security-checklist-2026",
-      "notion_page_id": "319fb3c0-144b-8245-c090-e5f3a918d628",
-      "slug": "ai-security-checklist",
-      "title": "AI導入前に確認したいセキュリティチェックリスト",
-      "category": "導入Tips",
-      "date": "2026-04-16",
-      "excerpt": "中小企業が生成AIを導入する前に確認すべき情報管理・社内ルール・運用体制を10項目で整理します。",
-      "body": "ai-security-checklist.html"
-    },
-    {
       "id": "316fb3c0-144b-8222-dd04-security2026",
       "notion_page_id": "319fb3c0-144b-8244-c089-e5f3a918d627",
       "slug": "ai-security-checklist-sme",
