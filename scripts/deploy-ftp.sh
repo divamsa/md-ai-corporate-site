@@ -50,19 +50,27 @@ cd $FTP_DIR
 rm -r -f .git
 rm -r -f .claude
 
-# ─ アップロード（差分のみ / .git .claude .env.local scripts/ 等は除外）
-# 注: --exclude-glob はサブパスに効かないことがあるため、
-#     正規表現 --exclude でディレクトリ全体を必ず除外する。
-#     --delete-excluded は scripts/ など他の除外までリモート削除するため使わない。
+# ─ アップロード（差分のみ／以下は最低限サーバーへ載せない）
+#   .git  .claude  .env  .env.local  .env.*  .DS_Store  node_modules  scripts
+# 注: ディレクトリは --exclude（正規表現）で根から除外。（--exclude-glob だけでは漏れることがある）
+#     ファイル類は名前パターンを正規表現でどの階層でも除外。
 mirror --reverse \
        --parallel=5 \
        --delete \
        --verbose \
        --exclude '^\.git(/|$)' \
        --exclude '^\.claude(/|$)' \
+       --exclude '^node_modules(/|$)' \
+       --exclude '^scripts(/|$)' \
+       --exclude '(^|/)\.env$' \
+       --exclude '(^|/)\.env\.' \
+       --exclude '(^|/)\.DS_Store$' \
        --exclude-glob .git \
        --exclude-glob .claude \
+       --exclude-glob .env \
        --exclude-glob .env.local \
+       --exclude-glob '.env.*' \
+       --exclude-glob .DS_Store \
        --exclude-glob scripts/ \
        --exclude-glob node_modules/ \
        --exclude-glob .gitignore \
